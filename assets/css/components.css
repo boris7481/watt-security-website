@@ -1872,6 +1872,54 @@
   color: var(--color-error);
 }
 
+/* ---- Contact Map (Milestone 17) — same radius/shadow language as
+   .k9__media and .contact-form (var(--radius-md)), but a lighter
+   var(--shadow-sm) since the map sits directly on the section's own
+   background rather than acting as a raised card. Widens progressively
+   (a taller ratio on mobile, a wide "banner" ratio on desktop) instead of
+   a fixed pixel height, per the responsive-first rule in
+   architecture/CSS_ARCHITECTURE.md. ---- */
+.contact__map-wrapper {
+  margin-top: var(--space-xl);
+}
+
+@media (min-width: 1024px) {
+  .contact__map-wrapper {
+    margin-top: var(--space-2xl);
+  }
+}
+
+.contact__map {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.contact__map-noscript {
+  font-family: var(--font-body);
+  color: var(--color-text-graphite);
+}
+
+.contact__map-frame {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  border: 0;
+}
+
+@media (min-width: 768px) {
+  .contact__map-frame {
+    aspect-ratio: 16 / 9;
+  }
+}
+
+@media (min-width: 1024px) {
+  .contact__map-frame {
+    aspect-ratio: 21 / 9;
+  }
+}
+
 /* --------------------------------------------------------------------------
    Footer (specifications/HOME_PAGE_SPECIFICATION.md §14)
    Watt Navy Deep background, Off-White text, Gold accents — reuses the

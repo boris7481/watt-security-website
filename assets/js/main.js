@@ -62,6 +62,11 @@ async function init() {
     await initContactInfo();
   }
 
+  if (document.querySelector("[data-contact-map]")) {
+    const { initContactMap } = await import("./modules/contact-map.js");
+    await initContactMap();
+  }
+
   if (document.querySelector("[data-contact-form]")) {
     const { initContactForm } = await import("./modules/contact-form.js");
     initContactForm();

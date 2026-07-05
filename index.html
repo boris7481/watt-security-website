@@ -583,6 +583,18 @@
           </form>
         </div>
       </div>
+
+      <div class="container contact__map-wrapper">
+        <!-- Populated by assets/js/modules/contact-map.js from
+             data/contact.json (address + gps fields) — the same source of
+             truth as the Contact section's own address details, so
+             updating that file keeps both in sync automatically. -->
+        <div class="contact__map" data-contact-map>
+          <noscript>
+            <p class="contact__map-noscript">Activez JavaScript pour afficher la carte de localisation.</p>
+          </noscript>
+        </div>
+      </div>
     </section>
   </main>
 
