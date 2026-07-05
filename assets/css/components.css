@@ -920,3 +920,121 @@
   font-size: var(--fs-body-sm);
   color: var(--color-text-cool-gray);
 }
+
+/* --------------------------------------------------------------------------
+   K9 (specifications/HOME_PAGE_SPECIFICATION.md §7)
+   A fourth, structurally distinct treatment: not a card grid at all, but a
+   two-column image + content layout with generous whitespace. Light section
+   background (alternating back from Key Numbers' dark Navy), image column
+   framed with rounded corners and a soft shadow for a premium feel.
+   -------------------------------------------------------------------------- */
+.k9 {
+  background-color: var(--color-bg-light);
+  padding-block: var(--space-2xl);
+}
+
+@media (min-width: 1024px) {
+  .k9 {
+    padding-block: var(--space-3xl);
+  }
+}
+
+.k9__inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-xl);
+}
+
+@media (min-width: 1024px) {
+  .k9__inner {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: var(--space-2xl);
+  }
+
+  /* Image on the right on desktop, per the brief's "colonne droite" —
+     content is first in the DOM (so it reads first for keyboard/AT users
+     and ranks first for the section's textual content), reordered
+     visually only at the breakpoint where two columns actually exist. */
+  .k9__media {
+    order: 2;
+  }
+}
+
+.k9__eyebrow {
+  font-family: var(--font-heading);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-h6-mobile);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--color-navy);
+  margin-bottom: var(--space-sm);
+}
+
+.k9__title {
+  font-family: var(--font-heading);
+  font-weight: var(--fw-extrabold);
+  font-size: var(--fs-h2-mobile);
+  line-height: 1.15;
+  color: var(--color-text-ink);
+  margin-bottom: var(--space-md);
+}
+
+.k9__text {
+  font-family: var(--font-body);
+  font-size: var(--fs-body-lg-mobile);
+  line-height: 1.6;
+  color: var(--color-text-graphite);
+  margin-bottom: var(--space-lg);
+}
+
+@media (min-width: 768px) {
+  .k9__eyebrow {
+    font-size: var(--fs-h6);
+  }
+
+  .k9__title {
+    font-size: var(--fs-h2);
+  }
+
+  .k9__text {
+    font-size: var(--fs-body-lg);
+  }
+}
+
+.k9__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-xl);
+}
+
+.k9__list-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  color: var(--color-text-ink);
+}
+
+.k9__list-icon {
+  flex: 0 0 auto;
+  width: 1.5rem;
+  height: 1.5rem;
+  color: var(--color-gold-deep);
+}
+
+.k9__media {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+.k9__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
