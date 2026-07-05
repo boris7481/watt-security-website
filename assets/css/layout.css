@@ -1,0 +1,76 @@
+/* ==========================================================================
+   Watt Security — Layout
+   General structural rules: base document appearance, main container,
+   base responsive grid, and the header/main/footer document skeleton.
+   Component-level styling (buttons, cards, nav, etc.) does not belong here
+   — see the future components.css (architecture/CSS_ARCHITECTURE.md).
+   ========================================================================== */
+
+/* ---- Base document appearance (brand defaults, no components yet) ---- */
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+  font-family: var(--font-body);
+  font-size: var(--fs-body-mobile);
+  font-weight: var(--fw-regular);
+  color: var(--color-text-ink);
+  background-color: var(--color-bg-light);
+}
+
+@media (min-width: 768px) {
+  body {
+    font-size: var(--fs-body);
+  }
+}
+
+/* header/footer keep their natural height; main grows to fill the
+   remaining viewport height so the footer never floats mid-screen on
+   short pages (a "sticky footer" pattern) — no visual styling implied. */
+main {
+  flex: 1 0 auto;
+}
+
+header,
+footer {
+  flex: 0 0 auto;
+}
+
+/* ---- Main Container (design/SPACING.md: 1280px max-width, responsive side padding) ---- */
+.container {
+  width: 100%;
+  max-width: var(--content-max-width);
+  margin-inline: auto;
+  padding-inline: var(--space-sm); /* 16px — mobile */
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding-inline: var(--space-lg); /* 32px — tablet */
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding-inline: var(--space-xl); /* 48px — desktop */
+  }
+}
+
+/* ---- Base Responsive Grid (design/SPACING.md: 4-col mobile, 12-col tablet+) ---- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-sm); /* 16px gutter — mobile */
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--space-md); /* 24px gutter — tablet/desktop */
+  }
+}

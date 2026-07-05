@@ -1,0 +1,48 @@
+/* ==========================================================================
+   Watt Security — Utilities
+   A small, deliberately limited set of general-purpose helper classes.
+   Not a utility-first framework — see architecture/CSS_ARCHITECTURE.md §6.
+   Loaded last so it can reliably override a component for rare, genuine
+   one-off adjustments.
+   ========================================================================== */
+
+.text-center {
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Visually hides content while keeping it available to assistive
+   technology (e.g., a "Skip to main content" link's visible label,
+   future icon-button accessible names). */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ==========================================================================
+   Global reduced-motion safety net (specifications/ACCESSIBILITY_SPECIFICATION.md
+   §6). Uses !important deliberately: a universal selector must reliably
+   override any later, more specific component animation/transition rule
+   regardless of specificity — the one explicit, documented exception to the
+   "no !important" rule in architecture/CSS_ARCHITECTURE.md §7.
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
