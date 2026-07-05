@@ -1,0 +1,238 @@
+/* ==========================================================================
+   Watt Security — Components
+   Reusable component styles, matching architecture/COMPONENT_ARCHITECTURE.md
+   one-to-one. This milestone implements: Skip Link, Header, Logo,
+   Navigation, CTA Button, Mobile Menu Toggle.
+   Mobile-first: base rules target the smallest viewport; media queries
+   progressively enhance for tablet/desktop (design/SPACING.md breakpoints).
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Skip Link (specifications/ACCESSIBILITY_SPECIFICATION.md §1)
+   -------------------------------------------------------------------------- */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--space-sm);
+  z-index: var(--z-skip-link);
+  padding: var(--space-xs) var(--space-md);
+  background-color: var(--color-navy);
+  color: var(--color-text-offwhite);
+  font-family: var(--font-body);
+  font-weight: var(--fw-medium);
+  border-radius: var(--radius-sm);
+  transition: top var(--duration-fast) var(--ease-out);
+}
+
+.skip-link:focus-visible {
+  top: var(--space-sm);
+}
+
+/* --------------------------------------------------------------------------
+   Header (design/UI_COMPONENTS.md §9 Navigation Bar; architecture/
+   COMPONENT_ARCHITECTURE.md §1-2 Header/Navigation)
+   -------------------------------------------------------------------------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-header);
+  background-color: var(--color-navy);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: var(--space-sm);
+  position: relative;
+}
+
+/* ---- Logo (text placeholder — no logo asset exists yet; see
+   specifications/MEDIA_SPECIFICATION.md open question) ---- */
+.site-header__logo {
+  font-family: var(--font-heading);
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-h5-mobile);
+  color: var(--color-text-offwhite);
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+@media (min-width: 768px) {
+  .site-header__logo {
+    font-size: var(--fs-h5);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Navigation
+   Mobile/Tablet (<1024px): collapses into a dropdown panel toggled by the
+   hamburger button. Desktop (>=1024px): displayed inline in the header row.
+   The 1024px cutoff (rather than 768px) is a deliberate choice: fitting the
+   logo + 5 links + CTA comfortably requires full desktop width — see the
+   Milestone 6 report for the rationale (resolves the open question left in
+   design/SPACING.md §4 regarding tablet nav treatment).
+   -------------------------------------------------------------------------- */
+.nav {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--space-sm);
+  background-color: var(--color-navy);
+  padding: var(--space-md);
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity var(--duration-slow) var(--ease-in-out),
+    max-height var(--duration-slow) var(--ease-in-out),
+    visibility 0s linear var(--duration-slow);
+}
+
+.nav.is-open {
+  max-height: 28rem;
+  opacity: 1;
+  visibility: visible;
+  transition:
+    opacity var(--duration-slow) var(--ease-in-out),
+    max-height var(--duration-slow) var(--ease-in-out),
+    visibility 0s linear 0s;
+}
+
+.nav__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.nav__link {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-weight: var(--fw-medium);
+  font-size: var(--fs-nav-mobile);
+  letter-spacing: var(--ls-nav);
+  color: var(--color-text-offwhite);
+  padding-block: var(--space-xxs);
+  border-bottom: 2px solid transparent;
+  transition: color var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out);
+}
+
+.nav__link:hover {
+  color: var(--color-gold);
+}
+
+.nav__link[aria-current="page"] {
+  color: var(--color-gold);
+  border-bottom-color: var(--color-gold);
+}
+
+.nav__cta {
+  align-self: flex-start;
+}
+
+@media (min-width: 1024px) {
+  .nav {
+    position: static;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-lg);
+    background-color: transparent;
+    padding: 0;
+    max-height: none;
+    overflow: visible;
+    opacity: 1;
+    visibility: visible;
+    transition: none;
+  }
+
+  .nav__list {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-lg);
+  }
+
+  .nav__link {
+    font-size: var(--fs-nav);
+  }
+
+  .nav__cta {
+    align-self: center;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Mobile Menu Toggle (hamburger / close icon swap)
+   -------------------------------------------------------------------------- */
+.menu-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;  /* 44px minimum touch target, per specifications/ACCESSIBILITY_SPECIFICATION.md §7 */
+  height: 2.75rem;
+  color: var(--color-text-offwhite);
+  flex: 0 0 auto;
+}
+
+.menu-toggle__icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.menu-toggle__icon--close {
+  display: none;
+}
+
+.menu-toggle[aria-expanded="true"] .menu-toggle__icon--open {
+  display: none;
+}
+
+.menu-toggle[aria-expanded="true"] .menu-toggle__icon--close {
+  display: block;
+}
+
+@media (min-width: 1024px) {
+  .menu-toggle {
+    display: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   CTA Button (design/UI_COMPONENTS.md §1 Primary Button)
+   Reusable across the site — not header-specific, but introduced now
+   because the header's "Demander un devis" CTA is the first consumer.
+   -------------------------------------------------------------------------- */
+.btn {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-button-mobile);
+  letter-spacing: var(--ls-button);
+  line-height: 1;
+  text-align: center;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-sm);
+  transition: background-color var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out);
+}
+
+@media (min-width: 768px) {
+  .btn {
+    font-size: var(--fs-button);
+  }
+}
+
+.btn--primary {
+  background-color: var(--color-gold);
+  color: var(--color-navy-deep);
+}
+
+.btn--primary:hover {
+  background-color: var(--color-gold-deep);
+}

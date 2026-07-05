@@ -9,9 +9,45 @@
   <link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
-  <header></header>
+  <a href="#main-content" class="skip-link">Aller au contenu principal</a>
 
-  <main></main>
+  <header class="site-header">
+    <div class="site-header__inner container">
+      <a href="index.html" class="site-header__logo" aria-label="Watt Security — Retour à l'accueil">Watt Security</a>
+
+      <nav id="primary-navigation" class="nav" aria-label="Navigation principale">
+        <ul class="nav__list">
+          <li><a href="#" class="nav__link" aria-current="page">Accueil</a></li>
+          <li><a href="#" class="nav__link">À propos</a></li>
+          <li><a href="#" class="nav__link">Services</a></li>
+          <li><a href="#" class="nav__link">Galerie</a></li>
+          <li><a href="#" class="nav__link">Contact</a></li>
+        </ul>
+        <a href="#" class="btn btn--primary nav__cta">Demander un devis</a>
+      </nav>
+
+      <button
+        type="button"
+        class="menu-toggle"
+        data-menu-toggle
+        aria-expanded="false"
+        aria-controls="primary-navigation"
+        aria-label="Ouvrir le menu"
+      >
+        <svg class="menu-toggle__icon menu-toggle__icon--open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+        <svg class="menu-toggle__icon menu-toggle__icon--close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false">
+          <line x1="5" y1="5" x2="19" y2="19"/>
+          <line x1="19" y1="5" x2="5" y2="19"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="main-content"></main>
 
   <footer></footer>
 

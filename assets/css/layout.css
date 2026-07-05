@@ -41,6 +41,14 @@ footer {
   flex: 0 0 auto;
 }
 
+/* ---- Global focus-visible ring (kept out of reset.css, which is
+   deliberately brand-color-free — this rule needs --color-gold, so it
+   lives here alongside the other brand-aware base rules). ---- */
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
 /* ---- Main Container (design/SPACING.md: 1280px max-width, responsive side padding) ---- */
 .container {
   width: 100%;

@@ -69,6 +69,16 @@
   --fs-body-mobile: 0.9375rem;    /* 15px */
   --fs-body-sm-mobile: 0.8125rem; /* 13px */
 
+  /* ---- Typography: Component-Specific Sizes (added Milestone 6, values
+     sourced directly from the "Navigation" and "Buttons/CTA" rows of
+     design/TYPOGRAPHY.md, not previously tokenized) ---- */
+  --fs-nav: 0.9375rem;         /* 15px — desktop navigation */
+  --fs-nav-mobile: 1rem;       /* 16px — mobile menu */
+  --ls-nav: 0.25px;
+  --fs-button: 1rem;           /* 16px — desktop */
+  --fs-button-mobile: 0.9375rem; /* 15px — mobile */
+  --ls-button: 0.5px;
+
   /* ---- Spacing Scale (design/SPACING.md — 8px base unit) ---- */
   --space-xxs: 0.25rem;  /* 4px */
   --space-xs: 0.5rem;    /* 8px */
@@ -95,6 +105,10 @@
 
   /* ---- Content Width (design/SPACING.md) ---- */
   --content-max-width: 1280px;
+
+  /* ---- Z-Index Scale (added Milestone 6, for header stacking) ---- */
+  --z-header: 100;
+  --z-skip-link: 1000;
 }
 
 /* ==========================================================================
