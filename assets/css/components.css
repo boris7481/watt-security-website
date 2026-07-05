@@ -2108,3 +2108,102 @@
     text-decoration-color: currentColor;
   }
 }
+
+/* --------------------------------------------------------------------------
+   Legal Page (Milestone 21 — pages/legal-notice.html, pages/privacy-policy.html)
+   A single, deliberately plain component shared by both pages, per
+   architecture/PAGE_ARCHITECTURE.md §6-7 ("intentionally plain — no
+   marketing content"): no cards, no imagery, no scroll-reveal, just a page
+   title and a series of read-friendly text sections. The NAP contact block
+   inside each page reuses .contact__details/.contact__detail unchanged
+   (see assets/js/modules/legal-page.js) rather than duplicating that
+   styling here.
+   -------------------------------------------------------------------------- */
+.legal {
+  background-color: var(--color-bg-light);
+  padding-block: var(--space-2xl);
+}
+
+@media (min-width: 1024px) {
+  .legal {
+    padding-block: var(--space-3xl);
+  }
+}
+
+.legal__eyebrow {
+  font-family: var(--font-heading);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-h6-mobile);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--color-navy);
+  margin-bottom: var(--space-sm);
+}
+
+.legal__title {
+  font-family: var(--font-heading);
+  font-weight: var(--fw-extrabold);
+  font-size: var(--fs-h1-mobile);
+  line-height: 1.15;
+  color: var(--color-text-ink);
+  margin-bottom: var(--space-sm);
+}
+
+.legal__updated {
+  font-family: var(--font-body);
+  font-size: var(--fs-body-sm);
+  color: var(--color-text-graphite);
+  margin-bottom: var(--space-lg);
+}
+
+.legal__intro {
+  font-family: var(--font-body);
+  font-size: var(--fs-body-lg-mobile);
+  line-height: 1.6;
+  color: var(--color-text-graphite);
+  max-width: 65ch;
+  margin-bottom: var(--space-xl);
+}
+
+@media (min-width: 768px) {
+  .legal__title {
+    font-size: var(--fs-h1);
+  }
+
+  .legal__intro {
+    font-size: var(--fs-body-lg);
+  }
+}
+
+.legal__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+  max-width: 70ch;
+}
+
+.legal__section-title {
+  font-family: var(--font-heading);
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-h4-mobile);
+  color: var(--color-text-ink);
+  margin-bottom: var(--space-sm);
+}
+
+.legal__section-text {
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.7;
+  color: var(--color-text-ink);
+  margin-bottom: var(--space-sm);
+}
+
+.legal__section-text:last-child {
+  margin-bottom: 0;
+}
+
+@media (min-width: 768px) {
+  .legal__section-title {
+    font-size: var(--fs-h4);
+  }
+}

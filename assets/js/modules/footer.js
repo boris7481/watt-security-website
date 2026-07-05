@@ -10,8 +10,9 @@
    ========================================================================== */
 
 import { icon, telHref, waNumber, fetchContactData, SOCIAL_ICONS } from "./contact-info.js";
+import { resolveDataUrl, resolveHref } from "./page-paths.js";
 
-const FOOTER_DATA_URL = "data/footer.json";
+const FOOTER_DATA_URL = resolveDataUrl("data/footer.json");
 
 const EXTRA_SOCIAL_ICONS = {
   YouTube: `<rect x="2" y="6" width="20" height="12" rx="3"/><path d="M10 9.5l6 2.5-6 2.5z" fill="currentColor" stroke="none"/>`
@@ -50,7 +51,7 @@ function renderQuickLinks(links) {
   const list = document.querySelector("[data-footer-nav]");
   if (!list || !Array.isArray(links)) return;
   list.innerHTML = links
-    .map((link) => `<li><a href="${link.href}" class="footer__link">${link.label}</a></li>`)
+    .map((link) => `<li><a href="${resolveHref(link.href)}" class="footer__link">${link.label}</a></li>`)
     .join("");
 }
 
@@ -121,7 +122,7 @@ function renderBottomBar(legal, companyName) {
 
   if (legalList && Array.isArray(legal?.links)) {
     legalList.innerHTML = legal.links
-      .map((link) => `<li><a href="${link.href}" class="footer__legal-link">${link.label}</a></li>`)
+      .map((link) => `<li><a href="${resolveHref(link.href)}" class="footer__legal-link">${link.label}</a></li>`)
       .join("");
   }
 }

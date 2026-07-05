@@ -77,6 +77,11 @@ async function init() {
     await initFooter();
   }
 
+  if (document.querySelector("[data-legal-contact]")) {
+    const { initLegalContact } = await import("./modules/legal-page.js");
+    await initLegalContact();
+  }
+
   initScrollReveal();
 }
 

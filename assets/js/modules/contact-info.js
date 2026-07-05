@@ -19,7 +19,9 @@
    WhatsApp row, drops the PO box).
    ========================================================================== */
 
-const DATA_URL = "data/contact.json";
+import { resolveDataUrl } from "./page-paths.js";
+
+const DATA_URL = resolveDataUrl("data/contact.json");
 
 export async function fetchContactData() {
   const response = await fetch(DATA_URL);
