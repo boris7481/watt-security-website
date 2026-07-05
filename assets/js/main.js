@@ -17,7 +17,6 @@ import { initScrollReveal } from "./modules/scroll-reveal.js";
  *
  *   - accordion.js     → generic expand/collapse (powers the FAQ section)
  *   - gallery.js       → photo/video gallery grid + lightbox
- *   - counters.js      → animated number count-up (Key Numbers section)
  *   - contact-form.js  → form validation, submission, accessible feedback
  *   - testimonials.js  → testimonial carousel behavior (if confirmed)
  *   - lazy-load.js     → progressive loading helpers beyond native lazy-loading
@@ -26,6 +25,8 @@ import { initScrollReveal } from "./modules/scroll-reveal.js";
  * mobile-menu.js) or dynamically via import() (if tied to below-the-fold
  * content, e.g. gallery.js, counters.js) — see
  * architecture/JAVASCRIPT_ARCHITECTURE.md §6 for the loading strategy.
+ * counters.js is the first to use the dynamic path: it's below the fold
+ * and only relevant on pages containing [data-stats-grid].
  *
  * Every module assumes prefers-reduced-motion is respected globally before
  * initializing any animation-driven behavior (counters, scroll reveal),
@@ -36,6 +37,10 @@ function init() {
   initMobileMenu();
   initHeroParallax();
   initScrollReveal();
+
+  if (document.querySelector("[data-stats-grid]")) {
+    import("./modules/counters.js").then((module) => module.initCounters());
+  }
 }
 
 document.addEventListener("DOMContentLoaded", init);

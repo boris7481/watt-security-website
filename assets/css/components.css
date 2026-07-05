@@ -668,6 +668,19 @@
 }
 
 /* ---- Why-Us Card ---- */
+/* Milestone 10 fix (flagged during the Milestone 9 review, applied now as
+   an indispensable correction): the reveal transition and the hover
+   transition used to be declared in two separate rules of different
+   specificity (.has-scroll-reveal .why-us__card vs. the plain .why-us__card
+   inside the hover media query). Because both set the same `transition`
+   shorthand, the higher-specificity rule silently replaced the lower one's
+   value instead of merging with it — once `.has-scroll-reveal` was active
+   (the normal case whenever JS runs), `transform`/`box-shadow` dropped out
+   of the transition list entirely and the hover lift snapped instantly
+   instead of easing in. Fixed by declaring one single, unified `transition`
+   on the base rule so nothing can override it — the reveal's stagger delay
+   is applied only to opacity/translate via the --reveal-delay custom
+   property, so it never leaks into the hover transition either. */
 .why-us__card {
   display: flex;
   flex-direction: column;
@@ -680,6 +693,10 @@
   box-shadow: var(--shadow-sm);
   opacity: 1;
   translate: 0 0;
+  transition: opacity var(--duration-slow) var(--ease-out) var(--reveal-delay, 0s),
+    translate var(--duration-slow) var(--ease-out) var(--reveal-delay, 0s),
+    transform var(--duration-base) var(--ease-out),
+    box-shadow var(--duration-base) var(--ease-out);
 }
 
 /* Progressive enhancement: pre-reveal state only exists once JS confirms
@@ -690,8 +707,6 @@
 .has-scroll-reveal .why-us__card {
   opacity: 0;
   translate: 0 16px;
-  transition: opacity var(--duration-slow) var(--ease-out),
-    translate var(--duration-slow) var(--ease-out);
 }
 
 .has-scroll-reveal .why-us__card.is-visible {
@@ -699,35 +714,26 @@
   translate: 0 0;
 }
 
-/* Staggered reveal, per design/ANIMATIONS.md §4 (~60ms per item). Uses the
-   standalone `translate` property (not `transform`) specifically so it
-   never collides with the hover lift below, which uses `transform` — the
-   two apply independently instead of one overriding the other by
-   specificity. */
+/* Staggered reveal, per design/ANIMATIONS.md §4 (~60ms per item). Only
+   opacity/translate read --reveal-delay (see the base rule above), so the
+   hover transition below is never delayed by a card's position in the grid. */
 .why-us__card:nth-child(2) {
-  transition-delay: 60ms;
+  --reveal-delay: 60ms;
 }
 .why-us__card:nth-child(3) {
-  transition-delay: 120ms;
+  --reveal-delay: 120ms;
 }
 .why-us__card:nth-child(4) {
-  transition-delay: 180ms;
+  --reveal-delay: 180ms;
 }
 .why-us__card:nth-child(5) {
-  transition-delay: 240ms;
+  --reveal-delay: 240ms;
 }
 .why-us__card:nth-child(6) {
-  transition-delay: 300ms;
+  --reveal-delay: 300ms;
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .why-us__card {
-    transition: opacity var(--duration-slow) var(--ease-out),
-      translate var(--duration-slow) var(--ease-out),
-      transform var(--duration-base) var(--ease-out),
-      box-shadow var(--duration-base) var(--ease-out);
-  }
-
   .why-us__card:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow-md);
@@ -770,4 +776,147 @@
   font-size: var(--fs-body-sm);
   line-height: 1.6;
   color: var(--color-text-graphite);
+}
+
+/* --------------------------------------------------------------------------
+   Key Numbers (specifications/HOME_PAGE_SPECIFICATION.md §5)
+   A third, deliberately distinct treatment: dark Navy section (vs. the two
+   light sections before it), no card fill/border at all — just a thin gold
+   top rule, an outlined (not solid) circular icon, and the number itself
+   as the dominant visual element in Gold. Content is rendered entirely by
+   assets/js/modules/counters.js from data/stats.json.
+   -------------------------------------------------------------------------- */
+.key-numbers {
+  background-color: var(--color-navy);
+  padding-block: var(--space-2xl);
+}
+
+@media (min-width: 1024px) {
+  .key-numbers {
+    padding-block: var(--space-3xl);
+  }
+}
+
+.key-numbers__eyebrow {
+  font-family: var(--font-heading);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-h6-mobile);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: var(--space-sm);
+}
+
+.key-numbers__title {
+  font-family: var(--font-heading);
+  font-weight: var(--fw-extrabold);
+  font-size: var(--fs-h2-mobile);
+  line-height: 1.15;
+  color: var(--color-text-offwhite);
+  max-width: 32ch;
+  margin-bottom: var(--space-xl);
+}
+
+@media (min-width: 768px) {
+  .key-numbers__eyebrow {
+    font-size: var(--fs-h6);
+  }
+
+  .key-numbers__title {
+    font-size: var(--fs-h2);
+  }
+}
+
+.key-numbers__noscript {
+  font-family: var(--font-body);
+  color: var(--color-text-cool-gray);
+}
+
+.key-numbers__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+}
+
+@media (min-width: 768px) {
+  .key-numbers__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .key-numbers__grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ---- Stat ---- */
+.key-numbers__stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-top: var(--space-lg);
+  border-top: 2px solid var(--color-gold);
+}
+
+.key-numbers__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border: 2px solid var(--color-gold);
+  border-radius: 50%;
+  color: var(--color-gold);
+  margin-bottom: var(--space-md);
+}
+
+.key-numbers__icon svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.key-numbers__value {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: var(--space-xs);
+  font-family: var(--font-heading);
+  font-weight: var(--fw-extrabold);
+  font-size: var(--fs-h1-mobile);
+  color: var(--color-gold);
+  line-height: 1;
+  margin-bottom: var(--space-sm);
+}
+
+@media (min-width: 768px) {
+  .key-numbers__value {
+    font-size: var(--fs-h2);
+  }
+}
+
+.key-numbers__subvalue {
+  font-family: var(--font-heading);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-h5-mobile);
+  /* Gold (not Gold-Deep): at 17-20px semibold this text doesn't qualify as
+     WCAG "large text" (needs 700-weight bold or 24px), so it needs the full
+     4.5:1 ratio — Gold-Deep on Navy measures ~4.07:1 here (fails), Gold
+     measures ~6.02:1 (passes). design/COLOR_PALETTE.md §4. */
+  color: var(--color-gold);
+}
+
+.key-numbers__stat-title {
+  font-family: var(--font-body);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-body);
+  color: var(--color-text-offwhite);
+  margin-bottom: var(--space-xxs);
+}
+
+.key-numbers__subtitle {
+  font-family: var(--font-body);
+  font-size: var(--fs-body-sm);
+  color: var(--color-text-cool-gray);
 }

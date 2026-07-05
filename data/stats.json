@@ -1,0 +1,34 @@
+{
+  "_comment": "Key Numbers section data (Milestone 10, section #key-numbers). Edit the values below to update the figures shown on the homepage — index.html contains no numeric values for this section, and assets/js/modules/counters.js never hardcodes them either; it only reads and renders whatever is in this file. 'animated' controls whether a stat counts up on scroll (set to false for non-numeric or fixed values, like availability).",
+  "stats": [
+    {
+      "id": "agents",
+      "value": 10,
+      "animated": true,
+      "title": "Agents qualifiés",
+      "subtitle": "Valeur provisoire"
+    },
+    {
+      "id": "clients",
+      "value": 8,
+      "animated": true,
+      "title": "Clients satisfaits",
+      "subtitle": "Valeur provisoire"
+    },
+    {
+      "id": "interventions",
+      "value": 8,
+      "animated": true,
+      "title": "Interventions réalisées",
+      "subtitle": "Valeur provisoire"
+    },
+    {
+      "id": "availability",
+      "value": "24h/24",
+      "subvalue": "7j/7",
+      "animated": false,
+      "title": "Disponibilité",
+      "subtitle": null
+    }
+  ]
+}
