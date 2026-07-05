@@ -583,3 +583,191 @@
     outline-offset: 4px;
   }
 }
+
+/* --------------------------------------------------------------------------
+   Why Choose Us (specifications/HOME_PAGE_SPECIFICATION.md §4)
+   Deliberately distinct from the Service Card treatment above: section
+   background/card background are reversed (Fog section / Pearl White
+   cards, vs. Services' Pearl White section / Fog cards), icons sit in a
+   solid circular badge instead of plain, text is centered instead of
+   left-aligned, and cards carry a resting shadow instead of none.
+   -------------------------------------------------------------------------- */
+.why-us {
+  background-color: var(--color-bg-light-alt);
+  padding-block: var(--space-2xl);
+}
+
+@media (min-width: 1024px) {
+  .why-us {
+    padding-block: var(--space-3xl);
+  }
+}
+
+.why-us__eyebrow {
+  font-family: var(--font-heading);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-h6-mobile);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  /* Navy, not Gold: same borderline-contrast reasoning as .services__eyebrow
+     (design/COLOR_PALETTE.md §4) — this section's Fog background is just as
+     light as Services' Pearl White. */
+  color: var(--color-navy);
+  margin-bottom: var(--space-sm);
+}
+
+.why-us__title {
+  font-family: var(--font-heading);
+  font-weight: var(--fw-extrabold);
+  font-size: var(--fs-h2-mobile);
+  line-height: 1.15;
+  color: var(--color-text-ink);
+  max-width: 32ch;
+  margin-bottom: var(--space-md);
+}
+
+.why-us__intro {
+  font-family: var(--font-body);
+  font-size: var(--fs-body-lg-mobile);
+  line-height: 1.6;
+  color: var(--color-text-graphite);
+  max-width: 60ch;
+  margin-bottom: var(--space-xl);
+}
+
+@media (min-width: 768px) {
+  .why-us__eyebrow {
+    font-size: var(--fs-h6);
+  }
+
+  .why-us__title {
+    font-size: var(--fs-h2);
+  }
+
+  .why-us__intro {
+    font-size: var(--fs-body-lg);
+  }
+}
+
+.why-us__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+}
+
+@media (min-width: 768px) {
+  .why-us__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .why-us__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ---- Why-Us Card ---- */
+.why-us__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: var(--color-bg-light);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-sm);
+  opacity: 1;
+  translate: 0 0;
+}
+
+/* Progressive enhancement: pre-reveal state only exists once JS confirms
+   it will actually run the reveal (main.js -> scroll-reveal.js adds this
+   class to <html>). Without it (JS disabled/failed), cards stay fully
+   visible via the default rule above — see scroll-reveal.js header comment
+   and specifications/ACCESSIBILITY_SPECIFICATION.md §6. */
+.has-scroll-reveal .why-us__card {
+  opacity: 0;
+  translate: 0 16px;
+  transition: opacity var(--duration-slow) var(--ease-out),
+    translate var(--duration-slow) var(--ease-out);
+}
+
+.has-scroll-reveal .why-us__card.is-visible {
+  opacity: 1;
+  translate: 0 0;
+}
+
+/* Staggered reveal, per design/ANIMATIONS.md §4 (~60ms per item). Uses the
+   standalone `translate` property (not `transform`) specifically so it
+   never collides with the hover lift below, which uses `transform` — the
+   two apply independently instead of one overriding the other by
+   specificity. */
+.why-us__card:nth-child(2) {
+  transition-delay: 60ms;
+}
+.why-us__card:nth-child(3) {
+  transition-delay: 120ms;
+}
+.why-us__card:nth-child(4) {
+  transition-delay: 180ms;
+}
+.why-us__card:nth-child(5) {
+  transition-delay: 240ms;
+}
+.why-us__card:nth-child(6) {
+  transition-delay: 300ms;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .why-us__card {
+    transition: opacity var(--duration-slow) var(--ease-out),
+      translate var(--duration-slow) var(--ease-out),
+      transform var(--duration-base) var(--ease-out),
+      box-shadow var(--duration-base) var(--ease-out);
+  }
+
+  .why-us__card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+  }
+}
+
+.why-us__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  background-color: var(--color-navy);
+  color: var(--color-text-offwhite);
+  margin-bottom: var(--space-md);
+}
+
+.why-us__icon svg {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+.why-us__card-title {
+  font-family: var(--font-heading);
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-h5-mobile);
+  color: var(--color-text-ink);
+  margin-bottom: var(--space-xs);
+}
+
+@media (min-width: 768px) {
+  .why-us__card-title {
+    font-size: var(--fs-h5);
+  }
+}
+
+.why-us__card-description {
+  font-family: var(--font-body);
+  font-size: var(--fs-body-sm);
+  line-height: 1.6;
+  color: var(--color-text-graphite);
+}

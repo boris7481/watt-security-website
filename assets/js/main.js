@@ -8,6 +8,7 @@
 
 import { initMobileMenu } from "./modules/mobile-menu.js";
 import { initHeroParallax } from "./modules/hero-parallax.js";
+import { initScrollReveal } from "./modules/scroll-reveal.js";
 
 /**
  * Remaining future modules will live in assets/js/modules/ and be imported
@@ -17,7 +18,6 @@ import { initHeroParallax } from "./modules/hero-parallax.js";
  *   - accordion.js     → generic expand/collapse (powers the FAQ section)
  *   - gallery.js       → photo/video gallery grid + lightbox
  *   - counters.js      → animated number count-up (Key Numbers section)
- *   - scroll-reveal.js → fade/slide-in on scroll (IntersectionObserver)
  *   - contact-form.js  → form validation, submission, accessible feedback
  *   - testimonials.js  → testimonial carousel behavior (if confirmed)
  *   - lazy-load.js     → progressive loading helpers beyond native lazy-loading
@@ -35,6 +35,7 @@ import { initHeroParallax } from "./modules/hero-parallax.js";
 function init() {
   initMobileMenu();
   initHeroParallax();
+  initScrollReveal();
 }
 
 document.addEventListener("DOMContentLoaded", init);
