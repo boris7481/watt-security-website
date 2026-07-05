@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <!-- Placeholder — replace with the real "Patrouille de sécurité" photo
+       (specifications/MEDIA_SPECIFICATION.md). Update alt text on swap. -->
+  <defs>
+    <linearGradient id="ph-patrols" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0B1A33"/>
+      <stop offset="100%" stop-color="#08131F"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#ph-patrols)"/>
+  <g transform="translate(400,300) scale(6.2) translate(-12,-12)" stroke="#B8933E" stroke-width="1.1" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.45">
+    <ellipse cx="7" cy="6" rx="2.5" ry="3.2"/>
+    <ellipse cx="16" cy="12" rx="2.5" ry="3.2"/>
+    <ellipse cx="7" cy="18" rx="2.5" ry="3.2"/>
+  </g>
+</svg>

@@ -1038,3 +1038,192 @@
   aspect-ratio: 4 / 5;
   object-fit: cover;
 }
+
+/* --------------------------------------------------------------------------
+   Gallery (specifications/HOME_PAGE_SPECIFICATION.md §8)
+   A 5th distinct treatment: dark Navy Deep section — deliberately, since a
+   photo grid reads as more premium against a dark backdrop, and every
+   other section so far has alternated between light variants and one
+   minimal dark band (Key Numbers). Cards have no border, just a subtly
+   lighter Navy Light surface for the caption beneath each photo.
+   -------------------------------------------------------------------------- */
+.gallery {
+  background-color: var(--color-navy-deep);
+  padding-block: var(--space-2xl);
+}
+
+@media (min-width: 1024px) {
+  .gallery {
+    padding-block: var(--space-3xl);
+  }
+}
+
+.gallery__eyebrow {
+  font-family: var(--font-heading);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-h6-mobile);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: var(--space-sm);
+}
+
+.gallery__title {
+  font-family: var(--font-heading);
+  font-weight: var(--fw-extrabold);
+  font-size: var(--fs-h2-mobile);
+  line-height: 1.15;
+  color: var(--color-text-offwhite);
+  max-width: 32ch;
+  margin-bottom: var(--space-md);
+}
+
+.gallery__intro {
+  font-family: var(--font-body);
+  font-size: var(--fs-body-lg-mobile);
+  line-height: 1.6;
+  color: var(--color-text-cool-gray);
+  max-width: 60ch;
+  margin-bottom: var(--space-xl);
+}
+
+@media (min-width: 768px) {
+  .gallery__eyebrow {
+    font-size: var(--fs-h6);
+  }
+
+  .gallery__title {
+    font-size: var(--fs-h2);
+  }
+
+  .gallery__intro {
+    font-size: var(--fs-body-lg);
+  }
+}
+
+.gallery__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+}
+
+@media (min-width: 768px) {
+  .gallery__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .gallery__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ---- Gallery Item ---- */
+.gallery__item {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-navy-light);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  opacity: 1;
+  translate: 0 0;
+  transition: opacity var(--duration-slow) var(--ease-out) var(--reveal-delay, 0s),
+    translate var(--duration-slow) var(--ease-out) var(--reveal-delay, 0s);
+}
+
+/* Progressive enhancement: see scroll-reveal.js / .why-us__card for the
+   full rationale — without has-scroll-reveal (JS disabled/failed), items
+   stay fully visible via the rule above. */
+.has-scroll-reveal .gallery__item {
+  opacity: 0;
+  translate: 0 16px;
+}
+
+.has-scroll-reveal .gallery__item.is-visible {
+  opacity: 1;
+  translate: 0 0;
+}
+
+.gallery__grid .gallery__item:nth-child(2) {
+  --reveal-delay: 60ms;
+}
+.gallery__grid .gallery__item:nth-child(3) {
+  --reveal-delay: 120ms;
+}
+.gallery__grid .gallery__item:nth-child(4) {
+  --reveal-delay: 180ms;
+}
+.gallery__grid .gallery__item:nth-child(5) {
+  --reveal-delay: 240ms;
+}
+.gallery__grid .gallery__item:nth-child(6) {
+  --reveal-delay: 300ms;
+}
+.gallery__grid .gallery__item:nth-child(7) {
+  --reveal-delay: 360ms;
+}
+.gallery__grid .gallery__item:nth-child(8) {
+  --reveal-delay: 420ms;
+}
+.gallery__grid .gallery__item:nth-child(9) {
+  --reveal-delay: 480ms;
+}
+
+.gallery__media {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+}
+
+.gallery__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.gallery__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(8, 19, 31, 0);
+  transition: background-color var(--duration-base) var(--ease-out);
+  pointer-events: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .gallery__item:hover .gallery__image {
+    transform: scale(1.05);
+  }
+
+  .gallery__item:hover .gallery__media::after {
+    background-color: rgba(8, 19, 31, 0.25);
+  }
+}
+
+.gallery__caption {
+  padding: var(--space-md);
+}
+
+.gallery__item-title {
+  font-family: var(--font-heading);
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-h5-mobile);
+  color: var(--color-text-offwhite);
+  margin-bottom: var(--space-xs);
+}
+
+@media (min-width: 768px) {
+  .gallery__item-title {
+    font-size: var(--fs-h5);
+  }
+}
+
+.gallery__item-description {
+  font-family: var(--font-body);
+  font-size: var(--fs-body-sm);
+  line-height: 1.6;
+  color: var(--color-text-cool-gray);
+}
