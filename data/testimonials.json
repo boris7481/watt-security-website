@@ -1,0 +1,26 @@
+{
+  "_comment": "Testimonials section data (Milestone 13, section #testimonials). Names, companies, and text below are provisional placeholders standing in for real client quotes — replace them with real, consented client testimonials when available. index.html never hardcodes any of this; assets/js/modules/testimonials.js only reads and renders whatever is in this file. 'rating' is an integer from 0 to 5.",
+  "testimonials": [
+    {
+      "id": "testimonial-1",
+      "name": "Jean-Marc Eto",
+      "company": "Société provisoire SARL",
+      "text": "Watt Security assure la sécurité de nos locaux avec un sérieux constant. Les agents sont ponctuels, rigoureux et toujours courtois.",
+      "rating": 5
+    },
+    {
+      "id": "testimonial-2",
+      "name": "Aïcha Ndongo",
+      "company": "Client résidentiel",
+      "text": "Depuis que Watt Security surveille notre résidence, nous nous sentons pleinement rassurés, de jour comme de nuit.",
+      "rating": 5
+    },
+    {
+      "id": "testimonial-3",
+      "name": "Paul Meka",
+      "company": "Organisateur d'événements",
+      "text": "Une équipe professionnelle qui a parfaitement géré la sécurité de notre événement, sans le moindre incident.",
+      "rating": 5
+    }
+  ]
+}

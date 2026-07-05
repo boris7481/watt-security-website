@@ -1227,3 +1227,194 @@
   line-height: 1.6;
   color: var(--color-text-cool-gray);
 }
+
+/* --------------------------------------------------------------------------
+   Testimonials (specifications/HOME_PAGE_SPECIFICATION.md §10;
+   design/UI_COMPONENTS.md §2 Testimonial Card)
+   Light section again (rhythm alternation back from the Gallery's dark
+   Navy Deep) — quiet, editorial cards: gold quotation mark accent, neutral
+   Fog surface, avatar + name/company as attribution.
+   -------------------------------------------------------------------------- */
+.testimonials {
+  background-color: var(--color-bg-light);
+  padding-block: var(--space-2xl);
+}
+
+@media (min-width: 1024px) {
+  .testimonials {
+    padding-block: var(--space-3xl);
+  }
+}
+
+.testimonials__eyebrow {
+  font-family: var(--font-heading);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-h6-mobile);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--color-navy);
+  margin-bottom: var(--space-sm);
+}
+
+.testimonials__title {
+  font-family: var(--font-heading);
+  font-weight: var(--fw-extrabold);
+  font-size: var(--fs-h2-mobile);
+  line-height: 1.15;
+  color: var(--color-text-ink);
+  max-width: 32ch;
+  margin-bottom: var(--space-md);
+}
+
+.testimonials__intro {
+  font-family: var(--font-body);
+  font-size: var(--fs-body-lg-mobile);
+  line-height: 1.6;
+  color: var(--color-text-graphite);
+  max-width: 60ch;
+  margin-bottom: var(--space-xl);
+}
+
+@media (min-width: 768px) {
+  .testimonials__eyebrow {
+    font-size: var(--fs-h6);
+  }
+
+  .testimonials__title {
+    font-size: var(--fs-h2);
+  }
+
+  .testimonials__intro {
+    font-size: var(--fs-body-lg);
+  }
+}
+
+.testimonials__noscript {
+  font-family: var(--font-body);
+  color: var(--color-text-graphite);
+}
+
+.testimonials__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+}
+
+@media (min-width: 768px) {
+  .testimonials__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .testimonials__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ---- Testimonial Card ---- */
+.testimonial-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-bg-light-alt);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  opacity: 1;
+  translate: 0 0;
+  transition: opacity var(--duration-slow) var(--ease-out) var(--reveal-delay, 0s),
+    translate var(--duration-slow) var(--ease-out) var(--reveal-delay, 0s);
+}
+
+/* Progressive enhancement: see scroll-reveal.js / .why-us__card for the
+   full rationale — without has-scroll-reveal (JS disabled/failed, or the
+   fetch of data/testimonials.json failing), cards stay fully visible via
+   the rule above (when they exist at all — see testimonials.js). */
+.has-scroll-reveal .testimonial-card {
+  opacity: 0;
+  translate: 0 16px;
+}
+
+.has-scroll-reveal .testimonial-card.is-visible {
+  opacity: 1;
+  translate: 0 0;
+}
+
+.testimonials__grid .testimonial-card:nth-child(2) {
+  --reveal-delay: 60ms;
+}
+.testimonials__grid .testimonial-card:nth-child(3) {
+  --reveal-delay: 120ms;
+}
+
+.testimonial-card__quote {
+  margin: 0;
+}
+
+.testimonial-card__quote-mark {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 3rem;
+  line-height: 1;
+  color: var(--color-gold);
+  margin-bottom: var(--space-xs);
+}
+
+.testimonial-card__text {
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  color: var(--color-text-ink);
+  margin-bottom: var(--space-md);
+}
+
+.testimonial-card__rating {
+  display: flex;
+  gap: var(--space-xxs);
+  margin-bottom: var(--space-md);
+}
+
+.testimonial-card__star {
+  width: 1.125rem;
+  height: 1.125rem;
+  color: var(--color-border-light);
+}
+
+.testimonial-card__star--filled {
+  /* Gold-Deep (not Gold): plain Gold on this card's Fog background measures
+     ~2.5:1, failing even the 3:1 WCAG non-text/graphical-object threshold —
+     the same issue already found and fixed for text in Milestones 8 and 10
+     (design/COLOR_PALETTE.md §4). Gold-Deep measures ~4:1 here, which passes. */
+  color: var(--color-gold-deep);
+}
+
+.testimonial-card__attribution {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-top: auto;
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--color-border-light);
+}
+
+.testimonial-card__avatar {
+  display: block;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  object-fit: cover;
+  flex: 0 0 auto;
+}
+
+.testimonial-card__name {
+  font-family: var(--font-heading);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-body-sm);
+  color: var(--color-text-ink);
+}
+
+.testimonial-card__company {
+  font-family: var(--font-body);
+  font-size: var(--fs-body-sm);
+  color: var(--color-text-graphite);
+}

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Generic avatar placeholder, reused for every testimonial until real
+       client photos are available (with their consent). Replace the src
+       on .testimonial-card__avatar per testimonial when ready. -->
+  <rect width="200" height="200" fill="#0B1A33"/>
+  <g stroke="#B8933E" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.6">
+    <circle cx="100" cy="78" r="32"/>
+    <path d="M40 165c0-38 27-62 60-62s60 24 60 62"/>
+  </g>
+</svg>
