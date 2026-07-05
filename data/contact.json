@@ -1,0 +1,20 @@
+{
+  "_comment": "Contact section data (Milestone 15, section #contact). Edit any value below to update the phone number, emails, address, hours, GPS coordinates, or social links shown on the homepage — index.html never hardcodes any of it, and assets/js/modules/contact-info.js only reads and renders whatever is in this file. The WhatsApp link is generated automatically from 'phone' (assets/js/modules/contact-info.js strips spaces/+ to build the wa.me URL) — there is no separate WhatsApp number to maintain.",
+  "company": "Watt Security",
+  "address": {
+    "street": "Douala-Deido",
+    "city": "Douala",
+    "country": "Cameroun",
+    "poBox": "1116"
+  },
+  "phone": "+237 696 56 98 17",
+  "emails": ["wattsecurity.contact@gmail.com", "wattsicherheit@gmail.com"],
+  "hours": ["Disponible 24h/24", "7j/7"],
+  "gps": null,
+  "_gps_comment": "Placeholder for now (no confirmed coordinates yet) — not rendered in the Contact section until a real value is set here; the Google Maps section (a future milestone) will use this same field.",
+  "social": [
+    { "name": "Facebook", "url": "#" },
+    { "name": "LinkedIn", "url": "#" },
+    { "name": "Instagram", "url": "#" }
+  ]
+}

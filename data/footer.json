@@ -1,0 +1,32 @@
+{
+  "_comment": "Footer data (Milestone 16, site-wide footer). Edit company description/tagline, quick-nav links, social links, or legal links here — index.html never hardcodes them. Contact details (address/phone/WhatsApp/emails/hours) are deliberately NOT duplicated in this file: the footer reads those directly from data/contact.json (single source of truth), reusing the same rendering helpers as the Contact section (assets/js/modules/contact-info.js).",
+  "company": {
+    "description": "Watt Security est une entreprise de sécurité privée basée à Douala, dédiée à la protection des entreprises, résidences et événements, 24h/24 et 7j/7.",
+    "tagline": "Votre sécurité, notre priorité."
+  },
+  "quickLinks": [
+    { "label": "Accueil", "href": "#" },
+    { "label": "Services", "href": "#services" },
+    { "label": "Pourquoi nous", "href": "#why-us" },
+    { "label": "Chiffres clés", "href": "#key-numbers" },
+    { "label": "Équipe K9", "href": "#k9" },
+    { "label": "Galerie", "href": "#gallery" },
+    { "label": "Témoignages", "href": "#testimonials" },
+    { "label": "FAQ", "href": "#faq" },
+    { "label": "Contact", "href": "#contact" }
+  ],
+  "social": [
+    { "name": "Facebook", "url": "#" },
+    { "name": "LinkedIn", "url": "#" },
+    { "name": "Instagram", "url": "#" },
+    { "name": "YouTube", "url": "#" }
+  ],
+  "_social_comment": "URLs are placeholders ('#') until real social profiles are confirmed — replace them here only.",
+  "legal": {
+    "links": [
+      { "label": "Mentions légales", "href": "pages/legal-notice.html" },
+      { "label": "Politique de confidentialité", "href": "pages/privacy-policy.html" }
+    ]
+  },
+  "_legal_comment": "These pages don't exist yet (architecture/PAGE_ARCHITECTURE.md reserves their filenames for a future milestone) — the links intentionally point ahead to where they will live."
+}

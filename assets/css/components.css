@@ -212,7 +212,13 @@
    because the header's "Demander un devis" CTA is the first consumer.
    -------------------------------------------------------------------------- */
 .btn {
-  display: inline-block;
+  display: inline-flex; /* was inline-block — widened in Milestone 15 so a
+    .btn can optionally contain an icon (Contact's Call/WhatsApp buttons)
+    alongside its text; a single text-only child renders identically to
+    the previous inline-block, so this doesn't affect any existing button */
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
   font-family: var(--font-heading);
   font-weight: var(--fw-semibold);
   font-size: var(--fs-button-mobile);
@@ -226,6 +232,12 @@
   transition: background-color var(--duration-fast) var(--ease-out),
     border-color var(--duration-fast) var(--ease-out),
     box-shadow var(--duration-fast) var(--ease-out);
+}
+
+.btn svg {
+  width: 1.125rem;
+  height: 1.125rem;
+  flex-shrink: 0;
 }
 
 @media (min-width: 768px) {
@@ -251,6 +263,23 @@
 
 .btn--secondary:hover {
   background-color: rgba(242, 243, 245, 0.1);
+}
+
+/* Light-background variant (design/UI_COMPONENTS.md §1: "border/text in
+   Watt Navy on light backgrounds, Off-White on dark ones" — only the dark
+   variant existed before this milestone, since the Hero was the only
+   consumer so far. The Contact section's "Appeler" button is the first
+   secondary button on a light background: plain --btn--secondary's
+   Off-White text was measured near-invisible there. */
+.btn--secondary-on-light {
+  border-color: var(--color-navy);
+  color: var(--color-navy);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn--secondary-on-light:hover {
+    background-color: rgba(11, 26, 51, 0.06);
+  }
 }
 
 /* --------------------------------------------------------------------------
@@ -1417,4 +1446,617 @@
   font-family: var(--font-body);
   font-size: var(--fs-body-sm);
   color: var(--color-text-graphite);
+}
+
+/* --------------------------------------------------------------------------
+   FAQ (specifications/HOME_PAGE_SPECIFICATION.md §11)
+   Structurally distinct from every prior section: a vertical list of
+   full-width rows (an accordion), not a card grid at all. Fog section
+   background (alternating from Testimonials' Pearl White), each row a
+   lighter Pearl White surface with a thin border.
+   -------------------------------------------------------------------------- */
+.faq {
+  background-color: var(--color-bg-light-alt);
+  padding-block: var(--space-2xl);
+}
+
+@media (min-width: 1024px) {
+  .faq {
+    padding-block: var(--space-3xl);
+  }
+}
+
+.faq__eyebrow {
+  font-family: var(--font-heading);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-h6-mobile);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--color-navy);
+  margin-bottom: var(--space-sm);
+}
+
+.faq__title {
+  font-family: var(--font-heading);
+  font-weight: var(--fw-extrabold);
+  font-size: var(--fs-h2-mobile);
+  line-height: 1.15;
+  color: var(--color-text-ink);
+  max-width: 32ch;
+  margin-bottom: var(--space-md);
+}
+
+.faq__intro {
+  font-family: var(--font-body);
+  font-size: var(--fs-body-lg-mobile);
+  line-height: 1.6;
+  color: var(--color-text-graphite);
+  max-width: 60ch;
+  margin-bottom: var(--space-xl);
+}
+
+@media (min-width: 768px) {
+  .faq__eyebrow {
+    font-size: var(--fs-h6);
+  }
+
+  .faq__title {
+    font-size: var(--fs-h2);
+  }
+
+  .faq__intro {
+    font-size: var(--fs-body-lg);
+  }
+}
+
+.faq__noscript {
+  font-family: var(--font-body);
+  color: var(--color-text-graphite);
+}
+
+.faq__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  max-width: 48rem;
+}
+
+/* ---- FAQ Item ---- */
+.faq-item {
+  background-color: var(--color-bg-light);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+}
+
+.faq-item__heading {
+  margin: 0;
+}
+
+.faq-item__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  width: 100%;
+  padding: var(--space-md);
+  text-align: left;
+  font-family: var(--font-heading);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-body);
+  color: var(--color-text-ink);
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+@media (min-width: 768px) {
+  .faq-item__trigger {
+    padding: var(--space-lg);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .faq-item__trigger:hover {
+    color: var(--color-navy);
+  }
+}
+
+.faq-item__question {
+  flex: 1 1 auto;
+}
+
+/* ---- "+" / "−" icon: a plus made of two bars; the vertical bar scales to
+   zero when open, leaving only the horizontal bar (a minus sign). ---- */
+.faq-item__icon {
+  position: relative;
+  flex: 0 0 auto;
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--color-gold-deep);
+}
+
+.faq-item__icon-line {
+  position: absolute;
+  background-color: currentColor;
+  border-radius: 1px;
+  transition: transform var(--duration-base) var(--ease-out),
+    opacity var(--duration-base) var(--ease-out);
+}
+
+.faq-item__icon-line--h {
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  transform: translateY(-50%);
+}
+
+.faq-item__icon-line--v {
+  left: 50%;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  transform: translateX(-50%) scaleY(1);
+}
+
+.faq-item__trigger[aria-expanded="true"] .faq-item__icon-line--v {
+  transform: translateX(-50%) scaleY(0);
+  opacity: 0;
+}
+
+/* ---- Answer panel: grid-template-rows 0fr -> 1fr animates height without
+   JS ever measuring scrollHeight. prefers-reduced-motion is already
+   handled globally (utilities.css forces near-zero transition-duration),
+   so no extra rule is needed here for that. ---- */
+.faq-item__answer-wrapper {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--duration-slow) var(--ease-in-out);
+}
+
+.faq-item__answer-wrapper.is-open {
+  grid-template-rows: 1fr;
+}
+
+.faq-item__answer-inner {
+  overflow: hidden;
+}
+
+.faq-item__answer {
+  padding: 0 var(--space-md) var(--space-md);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  color: var(--color-text-graphite);
+}
+
+@media (min-width: 768px) {
+  .faq-item__answer {
+    padding: 0 var(--space-lg) var(--space-lg);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Contact (specifications/HOME_PAGE_SPECIFICATION.md §12)
+   Two-column layout again (structurally distinct from every card-grid/list
+   section above it) — contact details + actions on one side, a real form
+   on the other. Light Pearl White background, closing the page on a calm,
+   inviting note rather than the FAQ's neutral Fog.
+   -------------------------------------------------------------------------- */
+.contact {
+  background-color: var(--color-bg-light);
+  padding-block: var(--space-2xl);
+}
+
+@media (min-width: 1024px) {
+  .contact {
+    padding-block: var(--space-3xl);
+  }
+}
+
+.contact__inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-xl);
+}
+
+@media (min-width: 768px) {
+  .contact__inner {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-lg);
+  }
+}
+
+@media (min-width: 1024px) {
+  .contact__inner {
+    gap: var(--space-2xl);
+  }
+}
+
+.contact__eyebrow {
+  font-family: var(--font-heading);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-h6-mobile);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--color-navy);
+  margin-bottom: var(--space-sm);
+}
+
+.contact__title {
+  font-family: var(--font-heading);
+  font-weight: var(--fw-extrabold);
+  font-size: var(--fs-h2-mobile);
+  line-height: 1.15;
+  color: var(--color-text-ink);
+  margin-bottom: var(--space-md);
+}
+
+.contact__text {
+  font-family: var(--font-body);
+  font-size: var(--fs-body-lg-mobile);
+  line-height: 1.6;
+  color: var(--color-text-graphite);
+  margin-bottom: var(--space-lg);
+}
+
+@media (min-width: 768px) {
+  .contact__eyebrow {
+    font-size: var(--fs-h6);
+  }
+
+  .contact__title {
+    font-size: var(--fs-h2);
+  }
+
+  .contact__text {
+    font-size: var(--fs-body-lg);
+  }
+}
+
+.contact__details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
+}
+
+.contact__detail {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  color: var(--color-text-ink);
+}
+
+.contact__detail-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  background-color: var(--color-bg-light-alt);
+  color: var(--color-navy);
+}
+
+.contact__detail-icon svg {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+.contact__detail-link {
+  color: var(--color-navy);
+  text-decoration-line: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 3px;
+  transition: text-decoration-color var(--duration-fast) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .contact__detail-link:hover {
+    text-decoration-color: currentColor;
+  }
+}
+
+.contact__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
+}
+
+.contact__social {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.contact__social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: 1px solid var(--color-border-light);
+  color: var(--color-navy);
+  transition: background-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out);
+}
+
+.contact__social-link svg {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .contact__social-link:hover {
+    background-color: var(--color-navy);
+    color: var(--color-text-offwhite);
+  }
+}
+
+/* ---- Contact Form (design/UI_COMPONENTS.md §3 Forms) ---- */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  background-color: var(--color-bg-light-alt);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+}
+
+.contact-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xxs);
+}
+
+.contact-form__label {
+  font-family: var(--font-body);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-body-sm);
+  color: var(--color-text-ink);
+}
+
+.contact-form__input,
+.contact-form__textarea {
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  color: var(--color-text-ink);
+  background-color: var(--color-bg-light);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-sm);
+  padding: var(--space-sm);
+  transition: border-color var(--duration-fast) var(--ease-out);
+}
+
+.contact-form__textarea {
+  resize: vertical;
+  min-height: 7rem;
+}
+
+.contact-form__input[aria-invalid="true"],
+.contact-form__textarea[aria-invalid="true"] {
+  border-color: var(--color-error);
+}
+
+.contact-form__error {
+  font-family: var(--font-body);
+  font-size: var(--fs-body-sm);
+  color: var(--color-error);
+  min-height: 1.2em;
+}
+
+.contact-form__submit {
+  align-self: flex-start;
+  margin-top: var(--space-xs);
+}
+
+.contact-form__feedback {
+  font-family: var(--font-body);
+  font-size: var(--fs-body-sm);
+  font-weight: var(--fw-medium);
+  min-height: 1.2em;
+}
+
+.contact-form__feedback--success {
+  /* --color-success (#2E7D32) on this Fog background measures ~4.42:1,
+     just under the 4.5:1 needed for text this size — a darker shade of
+     the same green is used here instead (design/COLOR_PALETTE.md §4). */
+  color: #256b29;
+}
+
+.contact-form__feedback--error {
+  color: var(--color-error);
+}
+
+/* --------------------------------------------------------------------------
+   Footer (specifications/HOME_PAGE_SPECIFICATION.md §14)
+   Watt Navy Deep background, Off-White text, Gold accents — reuses the
+   .contact__detail / .contact__detail-icon / .contact__detail-link /
+   .contact__social-link markup and classes from the Contact section
+   (Milestone 15) for the coordinates column, with contextual overrides
+   below since those were designed for a light background.
+   -------------------------------------------------------------------------- */
+.footer {
+  background-color: var(--color-navy-deep);
+  color: var(--color-text-offwhite);
+  padding-block: var(--space-2xl);
+}
+
+.footer__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-xl);
+}
+
+@media (min-width: 768px) {
+  .footer__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .footer__grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-lg);
+  }
+}
+
+.footer__col-title {
+  font-family: var(--font-heading);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-h6-mobile);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: var(--space-md);
+}
+
+.footer__logo {
+  display: inline-flex;
+  margin-bottom: var(--space-md);
+}
+
+.footer__logo-img {
+  display: block;
+  height: 2.75rem;
+  width: auto;
+}
+
+.footer__description {
+  font-family: var(--font-body);
+  font-size: var(--fs-body-sm);
+  line-height: 1.6;
+  color: var(--color-text-cool-gray);
+  margin-bottom: var(--space-sm);
+}
+
+.footer__tagline {
+  font-family: var(--font-heading);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-body-sm);
+  color: var(--color-text-offwhite);
+}
+
+.footer__links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.footer__link {
+  font-family: var(--font-body);
+  font-size: var(--fs-body-sm);
+  color: var(--color-text-cool-gray);
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .footer__link:hover {
+    color: var(--color-gold);
+  }
+}
+
+.footer__address {
+  font-style: normal; /* reset the browser default italic on <address> */
+}
+
+.footer__details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+/* ---- Contextual overrides: same .contact__detail* / .contact__social-link
+   classes as the Contact section, adapted for this dark background. ---- */
+.footer .contact__detail {
+  font-size: var(--fs-body-sm);
+  color: var(--color-text-cool-gray);
+}
+
+.footer .contact__detail-icon {
+  width: 1.75rem;
+  height: 1.75rem;
+  background-color: rgba(242, 243, 245, 0.08);
+  color: var(--color-gold);
+}
+
+.footer .contact__detail-icon svg {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.footer .contact__detail-link {
+  color: var(--color-text-offwhite);
+}
+
+.footer__social {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.footer .contact__social-link {
+  border-color: var(--color-border-dark);
+  color: var(--color-text-offwhite);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .footer .contact__social-link:hover {
+    background-color: var(--color-gold);
+    color: var(--color-navy-deep);
+  }
+}
+
+.footer__bottom {
+  border-top: 1px solid var(--color-border-dark);
+  margin-top: var(--space-xl);
+  padding-top: var(--space-lg);
+}
+
+.footer__bottom-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .footer__bottom-inner {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+}
+
+.footer__copyright {
+  font-family: var(--font-body);
+  font-size: var(--fs-body-sm);
+  color: var(--color-text-cool-gray);
+}
+
+.footer__legal-links {
+  display: flex;
+  gap: var(--space-md);
+}
+
+.footer__legal-link {
+  font-family: var(--font-body);
+  font-size: var(--fs-body-sm);
+  color: var(--color-text-cool-gray);
+  text-decoration-line: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 3px;
+  transition: text-decoration-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .footer__legal-link:hover {
+    color: var(--color-gold);
+    text-decoration-color: currentColor;
+  }
 }

@@ -15,19 +15,21 @@ import { initScrollReveal } from "./modules/scroll-reveal.js";
  * here the same way, one responsibility per file
  * (architecture/JAVASCRIPT_ARCHITECTURE.md §3):
  *
- *   - accordion.js     → generic expand/collapse (powers the FAQ section)
  *   - gallery.js       → photo/video gallery grid + lightbox
- *   - contact-form.js  → form validation, submission, accessible feedback
  *   - lazy-load.js     → progressive loading helpers beyond native lazy-loading
  *
  * Each module is imported statically (if needed above the fold, e.g.
  * mobile-menu.js) or dynamically via import() (if tied to below-the-fold
- * content, e.g. gallery.js, counters.js, testimonials.js) — see
+ * content, e.g. gallery.js, counters.js, testimonials.js, accordion.js,
+ * contact-info.js, contact-form.js) — see
  * architecture/JAVASCRIPT_ARCHITECTURE.md §6 for the loading strategy.
  *
  * Every module assumes prefers-reduced-motion is respected globally before
  * initializing any animation-driven behavior (counters, scroll reveal),
- * per specifications/ACCESSIBILITY_SPECIFICATION.md §6.
+ * per specifications/ACCESSIBILITY_SPECIFICATION.md §6. The FAQ accordion's
+ * open/close animation is pure CSS and already covered by the global
+ * transition-duration override in utilities.css, so accordion.js needs no
+ * reduced-motion check of its own.
  *
  * initScrollReveal() is called LAST, after every data-driven module has
  * finished rendering its own [data-scroll-reveal] elements (e.g. the
@@ -48,6 +50,26 @@ async function init() {
   if (document.querySelector("[data-testimonials-grid]")) {
     const { initTestimonials } = await import("./modules/testimonials.js");
     await initTestimonials();
+  }
+
+  if (document.querySelector("[data-faq-list]")) {
+    const { initAccordion } = await import("./modules/accordion.js");
+    await initAccordion();
+  }
+
+  if (document.querySelector("[data-contact-details]")) {
+    const { initContactInfo } = await import("./modules/contact-info.js");
+    await initContactInfo();
+  }
+
+  if (document.querySelector("[data-contact-form]")) {
+    const { initContactForm } = await import("./modules/contact-form.js");
+    initContactForm();
+  }
+
+  if (document.querySelector("[data-footer]")) {
+    const { initFooter } = await import("./modules/footer.js");
+    await initFooter();
   }
 
   initScrollReveal();

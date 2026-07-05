@@ -1,0 +1,45 @@
+{
+  "_comment": "FAQ section data (Milestone 14, section #faq). Questions and answers below are provisional — replace the answer text with final, verified copy when available. index.html never hardcodes any of this; assets/js/modules/accordion.js only reads and renders whatever is in this file.",
+  "items": [
+    {
+      "id": "faq-1",
+      "question": "Quels types de services propose Watt Security ?",
+      "answer": "Watt Security propose une gamme complète de services : sécurité des entreprises, surveillance de sites industriels, sécurité résidentielle, sécurité événementielle, protection rapprochée, rondes de sécurité, contrôle d'accès et équipes cynophiles (K9), avec une disponibilité 24h/24 et 7j/7."
+    },
+    {
+      "id": "faq-2",
+      "question": "Vos agents sont-ils disponibles 24h/24 et 7j/7 ?",
+      "answer": "Oui, nos équipes sont mobilisables à tout moment, de jour comme de nuit, tous les jours de l'année, pour répondre à vos besoins de sécurité."
+    },
+    {
+      "id": "faq-3",
+      "question": "Intervenez-vous pour les événements privés et professionnels ?",
+      "answer": "Oui, nous assurons la sécurité d'événements de toute envergure, qu'il s'agisse de rassemblements privés, de conférences professionnelles ou de manifestations publiques."
+    },
+    {
+      "id": "faq-4",
+      "question": "Proposez-vous des équipes cynophiles (K9) ?",
+      "answer": "Oui, nos équipes cynophiles, composées de maîtres-chiens expérimentés et de chiens rigoureusement entraînés, renforcent la surveillance et la dissuasion sur vos sites les plus sensibles."
+    },
+    {
+      "id": "faq-5",
+      "question": "Comment obtenir un devis ?",
+      "answer": "Il vous suffit de remplir notre formulaire de contact ou de nous appeler directement. Un membre de notre équipe reviendra vers vous rapidement pour évaluer vos besoins."
+    },
+    {
+      "id": "faq-6",
+      "question": "Intervenez-vous rapidement en cas d'urgence ?",
+      "answer": "Oui, notre organisation nous permet de réagir rapidement en cas d'urgence, sur l'ensemble de nos zones de couverture."
+    },
+    {
+      "id": "faq-7",
+      "question": "Vos agents sont-ils formés ?",
+      "answer": "Tous nos agents suivent une formation rigoureuse et continue, conforme aux standards professionnels du secteur de la sécurité privée."
+    },
+    {
+      "id": "faq-8",
+      "question": "Dans quelles villes intervenez-vous ?",
+      "answer": "Nous intervenons principalement à Douala et dans ses environs, avec la possibilité d'étendre notre couverture à d'autres villes du Cameroun selon vos besoins."
+    }
+  ]
+}
