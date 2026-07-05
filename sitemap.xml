@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Watt Security — sitemap.xml
+
+  Canonical domain is a placeholder (https://www.wattsecurity.com), pending
+  final domain confirmation (specifications/SEO_SPECIFICATION.md §8) — the
+  same placeholder used in index.html's <link rel="canonical">/Open Graph
+  tags and in robots.txt. Update every <loc> below the day the real domain
+  is confirmed.
+
+  Entries marked "PLACEHOLDER" reference pages listed in
+  architecture/PAGE_ARCHITECTURE.md that do not exist in this repository
+  yet (they are reserved filenames for future milestones). Do NOT submit
+  this sitemap to Google Search Console until every listed page actually
+  exists, or the not-yet-built URLs will be reported as crawl errors.
+  pages/about.html (also listed in PAGE_ARCHITECTURE.md) was intentionally
+  left out below, per this milestone's explicit page list — flagged in the
+  milestone report for validation.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://www.wattsecurity.com/</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- PLACEHOLDER — pages/services.html does not exist yet -->
+  <url>
+    <loc>https://www.wattsecurity.com/pages/services.html</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- PLACEHOLDER — pages/gallery.html does not exist yet -->
+  <url>
+    <loc>https://www.wattsecurity.com/pages/gallery.html</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- PLACEHOLDER — pages/contact.html does not exist yet -->
+  <url>
+    <loc>https://www.wattsecurity.com/pages/contact.html</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- PLACEHOLDER — pages/legal-notice.html does not exist yet -->
+  <url>
+    <loc>https://www.wattsecurity.com/pages/legal-notice.html</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- PLACEHOLDER — pages/privacy-policy.html does not exist yet -->
+  <url>
+    <loc>https://www.wattsecurity.com/pages/privacy-policy.html</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+</urlset>

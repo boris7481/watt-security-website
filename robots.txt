@@ -1,0 +1,6 @@
+# robots.txt — Watt Security
+# The site has no private/admin areas; all crawlers get full access.
+User-agent: *
+Allow: /
+
+Sitemap: https://www.wattsecurity.com/sitemap.xml

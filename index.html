@@ -5,8 +5,85 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Watt Security — Sécurité Privée Professionnelle à Douala, Cameroun</title>
   <meta name="description" content="Watt Security : services de sécurité privée professionnels à Douala, Cameroun — gardiennage, surveillance, événementiel, protection VIP, 24h/24.">
+
+  <!-- specifications/SEO_SPECIFICATION.md §1 primary keywords. Ignored by
+       Google's own ranking algorithm today, but kept since some secondary
+       crawlers/directories still read it and it costs nothing. -->
+  <meta name="keywords" content="sécurité privée Douala, agence de sécurité Cameroun, gardiennage Douala, vigiles Douala, surveillance entreprise Douala, sécurité événementielle Douala, protection rapprochée Cameroun, chiens de sécurité Cameroun, sécurité industrielle Cameroun, patrouille de sécurité Douala">
+  <meta name="author" content="Watt Security">
+  <meta name="robots" content="index, follow">
+
+  <!-- specifications/SEO_SPECIFICATION.md §8: final domain not yet
+       confirmed by the client. https://www.wattsecurity.com is a
+       placeholder used consistently across this file, robots.txt,
+       sitemap.xml, and the JSON-LD below — replace every occurrence in
+       all three files the day the real domain is confirmed. -->
+  <link rel="canonical" href="https://www.wattsecurity.com/">
+  <meta name="theme-color" content="#0B1A33">
+
+  <!-- Open Graph (specifications/SEO_SPECIFICATION.md §5) -->
+  <meta property="og:title" content="Watt Security — Sécurité Privée Professionnelle à Douala, Cameroun">
+  <meta property="og:description" content="Watt Security : services de sécurité privée professionnels à Douala, Cameroun — gardiennage, surveillance, événementiel, protection VIP, 24h/24.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.wattsecurity.com/">
+  <!-- Placeholder: reuses the existing logo (assets/logo/logo_watt.jpg) as
+       a temporary social preview image. Replace with a dedicated
+       1200×630px image per specifications/MEDIA_SPECIFICATION.md §1 once
+       produced in the media milestone. -->
+  <meta property="og:image" content="https://www.wattsecurity.com/assets/logo/logo_watt.jpg">
+  <meta property="og:image:width" content="2048">
+  <meta property="og:image:height" content="2041">
+  <meta property="og:locale" content="fr_CM">
+  <meta property="og:site_name" content="Watt Security">
+
+  <!-- Twitter Card (specifications/SEO_SPECIFICATION.md §5) -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Watt Security — Sécurité Privée Professionnelle à Douala, Cameroun">
+  <meta name="twitter:description" content="Watt Security : services de sécurité privée professionnels à Douala, Cameroun — gardiennage, surveillance, événementiel, protection VIP, 24h/24.">
+  <meta name="twitter:image" content="https://www.wattsecurity.com/assets/logo/logo_watt.jpg">
+
   <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
   <link rel="stylesheet" href="assets/css/main.css">
+
+  <!-- Schema.org JSON-LD (specifications/SEO_SPECIFICATION.md §6). Kept
+       static rather than rendered by JS (unlike data/contact.json's other
+       consumers) so structured data is present in the raw HTML for every
+       crawler, with no dependency on script execution. Values mirror
+       data/contact.json exactly — update both together if the address,
+       phone, or email ever change. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Watt Security",
+    "image": "https://www.wattsecurity.com/assets/logo/logo_watt.jpg",
+    "logo": "https://www.wattsecurity.com/assets/logo/logo_watt.jpg",
+    "url": "https://www.wattsecurity.com/",
+    "telephone": "+237696569817",
+    "email": "wattsecurity.contact@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Douala-Deido",
+      "addressLocality": "Douala",
+      "addressCountry": "CM"
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday", "Tuesday", "Wednesday", "Thursday",
+        "Friday", "Saturday", "Sunday"
+      ],
+      "opens": "00:00",
+      "closes": "23:59"
+    },
+    "sameAs": []
+  }
+  </script>
+  <!-- "sameAs" above is intentionally empty: data/contact.json's social
+       links are still "#" placeholders (see its _social_comment). Fill
+       this array with the real profile URLs the day they're confirmed —
+       do not put "#" placeholders inside structured data, since crawlers
+       treat sameAs values as real URLs to follow. -->
 </head>
 <body>
   <a href="#main-content" class="skip-link">Aller au contenu principal</a>
@@ -368,12 +445,15 @@
         <div class="k9__media">
           <!-- Placeholder component: assets/images/k9/placeholder-k9.svg.
                Swap the src for the final Watt Security K9 photograph when
-               available (a future mini-milestone) and update alt text at
-               that time — it is intentionally empty now since there is no
-               real photo content yet to describe. -->
+               available (a future mini-milestone) and update the alt text
+               to describe that real photo. Milestone 18 (SEO):
+               PROJECT_RULES.md §3 requires meaningful alt text on every
+               non-decorative image — this one is a content placeholder,
+               not a decorative element, so it describes the section's
+               intended subject rather than being left empty. -->
           <img
             src="assets/images/k9/placeholder-k9.svg"
-            alt=""
+            alt="Maître-chien Watt Security et son chien lors d'une ronde de sécurité"
             width="800"
             height="1000"
             loading="lazy"
