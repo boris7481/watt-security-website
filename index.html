@@ -43,7 +43,29 @@
   <meta name="twitter:image" content="https://www.wattsecurity.com/assets/logo/logo_watt.jpg">
 
   <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
-  <link rel="stylesheet" href="assets/css/main.css">
+
+  <!-- Milestone 19 (performance audit): stylesheets are linked directly and
+       individually, per architecture/CSS_ARCHITECTURE.md §2, instead of the
+       single assets/css/main.css entry point that used @import internally.
+       @import forces the browser to fetch main.css, parse it, then fetch
+       each imported file in sequence — a serial waterfall that delays First
+       Contentful Paint. Separate <link> tags let the browser discover and
+       fetch all five files in parallel while preserving the exact same
+       cascade order (tokens -> reset -> layout -> components -> utilities).
+       No visual change results from this — same rules, same order. -->
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/reset.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/utilities.css">
+
+  <!-- Resource hint for the Contact section's Google Maps iframe
+       (architecture/PERFORMANCE_STRATEGY.md §3: preconnect only for
+       third-party origins genuinely in use). The iframe itself still loads
+       lazily on scroll; this only warms up the connection in advance so it
+       resolves faster once loading="lazy" triggers it. -->
+  <link rel="preconnect" href="https://www.google.com">
+  <link rel="dns-prefetch" href="https://www.google.com">
 
   <!-- Schema.org JSON-LD (specifications/SEO_SPECIFICATION.md §6). Kept
        static rather than rendered by JS (unlike data/contact.json's other

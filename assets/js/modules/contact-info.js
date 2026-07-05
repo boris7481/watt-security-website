@@ -19,7 +19,7 @@
    WhatsApp row, drops the PO box).
    ========================================================================== */
 
-export const DATA_URL = "data/contact.json";
+const DATA_URL = "data/contact.json";
 
 export async function fetchContactData() {
   const response = await fetch(DATA_URL);
