@@ -47,20 +47,23 @@
   position: relative;
 }
 
-/* ---- Logo (text placeholder — no logo asset exists yet; see
-   specifications/MEDIA_SPECIFICATION.md open question) ---- */
+/* ---- Logo (official asset: assets/logo/logo_watt.jpg — do not modify the
+   file itself; only its displayed size is controlled here) ---- */
 .site-header__logo {
-  font-family: var(--font-heading);
-  font-weight: var(--fw-bold);
-  font-size: var(--fs-h5-mobile);
-  color: var(--color-text-offwhite);
-  letter-spacing: 0.5px;
-  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+}
+
+.site-header__logo-img {
+  display: block;
+  height: 2.5rem;   /* 40px — mobile/tablet */
+  width: auto;
 }
 
 @media (min-width: 768px) {
-  .site-header__logo {
-    font-size: var(--fs-h5);
+  .site-header__logo-img {
+    height: 3rem;   /* 48px — desktop */
   }
 }
 
@@ -217,8 +220,11 @@
   line-height: 1;
   text-align: center;
   padding: var(--space-sm) var(--space-md);
+  border: 2px solid transparent; /* reserved so --btn--secondary's visible
+    border doesn't change the box size relative to --btn--primary */
   border-radius: var(--radius-sm);
   transition: background-color var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out),
     box-shadow var(--duration-fast) var(--ease-out);
 }
 
@@ -235,4 +241,145 @@
 
 .btn--primary:hover {
   background-color: var(--color-gold-deep);
+}
+
+.btn--secondary {
+  background-color: transparent;
+  border-color: var(--color-text-offwhite);
+  color: var(--color-text-offwhite);
+}
+
+.btn--secondary:hover {
+  background-color: rgba(242, 243, 245, 0.1);
+}
+
+/* --------------------------------------------------------------------------
+   Hero (specifications/HOME_PAGE_SPECIFICATION.md §1)
+   -------------------------------------------------------------------------- */
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 100svh;
+  overflow: hidden;
+  background-color: var(--color-navy-deep); /* fallback beneath the gradient */
+}
+
+/* Placeholder background — no photography/video has been sourced yet
+   (specifications/MEDIA_SPECIFICATION.md open question). Replace this
+   gradient with a <video>/<img> element when real footage is available;
+   .hero__overlay is already in place to guarantee text contrast over it.
+   Oversized (110% height, -5% top) so the parallax translate in
+   hero-parallax.js never reveals an edge gap underneath. */
+.hero__media {
+  position: absolute;
+  top: -5%;
+  left: 0;
+  right: 0;
+  height: 110%;
+  background: linear-gradient(160deg, var(--color-navy) 0%, var(--color-navy-deep) 100%);
+}
+
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(8, 19, 31, 0.35) 0%, rgba(8, 19, 31, 0.65) 100%);
+}
+
+.hero__content {
+  position: relative;
+  z-index: 1;
+  padding-block: var(--space-3xl);
+}
+
+@keyframes hero-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero__eyebrow {
+  font-family: var(--font-heading);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-h6-mobile);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: var(--space-sm);
+  animation: hero-fade-up var(--duration-slow) var(--ease-out) both;
+}
+
+.hero__title {
+  font-family: var(--font-heading);
+  font-weight: var(--fw-extrabold);
+  font-size: var(--fs-h1-mobile);
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+  color: var(--color-text-offwhite);
+  margin-bottom: var(--space-md);
+  animation: hero-fade-up var(--duration-slow) var(--ease-out) 80ms both;
+}
+
+.hero__text {
+  font-family: var(--font-body);
+  font-size: var(--fs-body-lg-mobile);
+  line-height: 1.6;
+  color: var(--color-text-offwhite);
+  max-width: 42rem;
+  margin-bottom: var(--space-lg);
+  animation: hero-fade-up var(--duration-slow) var(--ease-out) 160ms both;
+}
+
+.hero__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  animation: hero-fade-up var(--duration-slow) var(--ease-out) 240ms both;
+}
+
+@media (min-width: 600px) {
+  .hero__actions {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero__eyebrow {
+    font-size: var(--fs-h6);
+  }
+
+  .hero__title {
+    font-size: var(--fs-h1);
+  }
+
+  .hero__text {
+    font-size: var(--fs-body-lg);
+  }
+}
+
+@keyframes hero-scroll-pulse {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.hero__scroll-indicator {
+  position: absolute;
+  bottom: var(--space-lg);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  color: var(--color-text-offwhite);
+  animation: hero-scroll-pulse 2s var(--ease-in-out) infinite;
 }

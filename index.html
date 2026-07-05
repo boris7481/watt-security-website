@@ -13,7 +13,9 @@
 
   <header class="site-header">
     <div class="site-header__inner container">
-      <a href="index.html" class="site-header__logo" aria-label="Watt Security — Retour à l'accueil">Watt Security</a>
+      <a href="index.html" class="site-header__logo" aria-label="Watt Security — Retour à l'accueil">
+        <img src="assets/logo/logo_watt.jpg" alt="Watt Security" width="2048" height="2041" class="site-header__logo-img">
+      </a>
 
       <nav id="primary-navigation" class="nav" aria-label="Navigation principale">
         <ul class="nav__list">
@@ -47,7 +49,28 @@
     </div>
   </header>
 
-  <main id="main-content"></main>
+  <main id="main-content">
+    <section class="hero" aria-label="Introduction">
+      <div class="hero__media" aria-hidden="true"></div>
+      <div class="hero__overlay" aria-hidden="true"></div>
+
+      <div class="hero__content container">
+        <p class="hero__eyebrow">Watt Security</p>
+        <h1 class="hero__title">Votre sécurité, notre priorité.</h1>
+        <p class="hero__text">Watt Security protège vos entreprises, vos événements, vos résidences et vos collaborateurs avec professionnalisme, vigilance et réactivité 24h/24 et 7j/7.</p>
+        <div class="hero__actions">
+          <a href="#" class="btn btn--primary">Demander un devis</a>
+          <a href="#" class="btn btn--secondary">Découvrir nos services</a>
+        </div>
+      </div>
+
+      <span class="hero__scroll-indicator" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24">
+          <path d="M6 9l6 6 6-6"/>
+        </svg>
+      </span>
+    </section>
+  </main>
 
   <footer></footer>
 

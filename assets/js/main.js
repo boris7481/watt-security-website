@@ -7,6 +7,7 @@
    ========================================================================== */
 
 import { initMobileMenu } from "./modules/mobile-menu.js";
+import { initHeroParallax } from "./modules/hero-parallax.js";
 
 /**
  * Remaining future modules will live in assets/js/modules/ and be imported
@@ -33,6 +34,7 @@ import { initMobileMenu } from "./modules/mobile-menu.js";
 
 function init() {
   initMobileMenu();
+  initHeroParallax();
 }
 
 document.addEventListener("DOMContentLoaded", init);
