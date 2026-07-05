@@ -383,3 +383,203 @@
   color: var(--color-text-offwhite);
   animation: hero-scroll-pulse 2s var(--ease-in-out) infinite;
 }
+
+/* --------------------------------------------------------------------------
+   Services (specifications/HOME_PAGE_SPECIFICATION.md §3)
+   -------------------------------------------------------------------------- */
+.services {
+  background-color: var(--color-bg-light);
+  padding-block: var(--space-2xl);
+}
+
+@media (min-width: 1024px) {
+  .services {
+    padding-block: var(--space-3xl);
+  }
+}
+
+.services__eyebrow {
+  font-family: var(--font-heading);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-h6-mobile);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  /* Watt Navy (not Gold) on this light section background: Gold measures
+     ~2.7:1 and even Gold-Deep only ~4:1 on Pearl White, both failing WCAG
+     AA at this text size (design/COLOR_PALETTE.md §4). Navy is explicitly
+     documented there for "primary text on light backgrounds where emphasis
+     is needed" — the Hero's eyebrow keeps plain Gold since it sits on the
+     dark navy background instead, where the ratio is a safe ~6:1. */
+  color: var(--color-navy);
+  margin-bottom: var(--space-sm);
+}
+
+.services__title {
+  font-family: var(--font-heading);
+  font-weight: var(--fw-extrabold);
+  font-size: var(--fs-h2-mobile);
+  line-height: 1.15;
+  color: var(--color-text-ink);
+  max-width: 32ch;
+  margin-bottom: var(--space-xl);
+}
+
+@media (min-width: 768px) {
+  .services__eyebrow {
+    font-size: var(--fs-h6);
+  }
+
+  .services__title {
+    font-size: var(--fs-h2);
+  }
+}
+
+.services__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+}
+
+@media (min-width: 768px) {
+  .services__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .services__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ---- Service Card (design/UI_COMPONENTS.md §2 Service Card) ---- */
+.service-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-bg-light-alt);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  transition: transform var(--duration-base) var(--ease-out),
+    box-shadow var(--duration-base) var(--ease-out);
+}
+
+@media (min-width: 1024px) {
+  .service-card {
+    padding: var(--space-lg);
+  }
+}
+
+.service-card__icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  color: var(--color-navy);
+  margin-bottom: var(--space-md);
+  transition: color var(--duration-base) var(--ease-out);
+}
+
+.service-card__title {
+  font-family: var(--font-heading);
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-h5-mobile);
+  color: var(--color-text-ink);
+  margin-bottom: var(--space-xs);
+  transition: color var(--duration-base) var(--ease-out);
+}
+
+@media (min-width: 768px) {
+  .service-card__title {
+    font-size: var(--fs-h5);
+  }
+}
+
+.service-card__description {
+  font-family: var(--font-body);
+  font-size: var(--fs-body-sm);
+  line-height: 1.6;
+  color: var(--color-text-graphite);
+  margin-bottom: var(--space-md);
+}
+
+.service-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xxs);
+  font-family: var(--font-body);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-body-sm);
+  color: var(--color-navy);
+  text-decoration-line: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 3px;
+  margin-top: auto;
+  align-self: flex-start;
+  transition: text-decoration-color var(--duration-fast) var(--ease-out);
+}
+
+.service-card__link svg {
+  width: 1rem;
+  height: 1rem;
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+/* Hover effects gated to devices with a real pointer (mouse/trackpad):
+   avoids a "stuck hover" state on touch after a tap. */
+@media (hover: hover) and (pointer: fine) {
+  .service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+  }
+
+  /* Underline reveal (not a color change) for the link — safe at any text
+     size/weight, unlike the Gold-Deep accent below. */
+  .service-card:hover .service-card__link {
+    text-decoration-color: currentColor;
+  }
+
+  .service-card:hover .service-card__link svg {
+    transform: translateX(2px);
+  }
+}
+
+/* The Gold-Deep hover accent on the icon/title is additionally gated to
+   >=768px: below that, the title renders at 17px (--fs-h5-mobile), too
+   small/not-bold-enough to qualify as WCAG "large text", and Gold-Deep on
+   the card's Fog background falls just under 4.5:1 at that size. At
+   >=768px the title is 20px bold (--fs-h5), which clears the 3:1 "large
+   text" threshold comfortably (design/COLOR_PALETTE.md §4). The link text
+   never grows past 14px, so it always uses the underline treatment above
+   instead of a color change. Below 768px, hover still lifts the card
+   (rule above) — the icon/title just keep their default colors. */
+@media (hover: hover) and (pointer: fine) and (min-width: 768px) {
+  .service-card:hover .service-card__icon,
+  .service-card:hover .service-card__title {
+    color: var(--color-gold-deep);
+  }
+}
+
+/* Whole card is the only clickable target: the visible link is stretched
+   over the entire card via ::after, so there is a single real <a> per card
+   (avoids nesting interactive elements) while the full card area responds
+   to clicks/taps, per design/UI_COMPONENTS.md §8. */
+.service-card__link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+/* Progressive enhancement: in browsers supporting :has(), show the focus
+   ring around the whole card (clearer for keyboard users, since the whole
+   card is the actual target) instead of just the small link text. Falls
+   back to the global :focus-visible ring on the link itself otherwise. */
+@supports selector(:has(a)) {
+  .service-card__link:focus-visible {
+    outline: none;
+  }
+
+  .service-card:has(.service-card__link:focus-visible) {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 4px;
+  }
+}
