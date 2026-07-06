@@ -126,10 +126,11 @@ Development is complete. All planned homepage sections, the legal pages, SEO/str
 **Delivered:**
 - Homepage (`index.html`): Header/Navigation, Hero (video + poster), Services, Why Choose Us, Key Numbers, K9 Unit, Photo Gallery, Testimonials, FAQ, Contact (form + Google Maps), Footer.
 - Legal pages (`pages/legal-notice.html`, `pages/privacy-policy.html`).
-- Complete SEO setup: meta tags, Open Graph, Twitter Card, `robots.txt`, `sitemap.xml`, JSON-LD (`LocalBusiness`).
+- Complete SEO setup: meta tags, Open Graph, Twitter Card (final dedicated preview image), `robots.txt`, `sitemap.xml`, JSON-LD (`LocalBusiness`).
 - Performance optimization: real WebP encoding, lazy loading, `fetchpriority`/`decoding` hints, parallel CSS delivery.
 - Accessibility: WCAG AA contrast, keyboard focus states, `prefers-reduced-motion` support.
+- Complete favicon set and Web App Manifest (SVG, ICO, PNG variants, Apple Touch Icon).
 
-**Known open items before public launch** (see `CHANGELOG.md` v1.0.0 entry and the Milestone 29/30 audit reports for full detail): final production domain, favicon PNG/ICO variants, a dedicated Open Graph image, and a few client-confirmation items (legal representative name, hosting provider, business registration number) flagged as placeholders in `pages/legal-notice.html`.
+**Known open items before public launch** (see `CHANGELOG.md` v1.0.0 entry for full detail): final production domain, and a few client-confirmation items (legal representative name, hosting provider, business registration number) flagged as placeholders in `pages/legal-notice.html`.
 
 Pages not yet built (`about.html`, `services.html`, `gallery.html`, `contact.html`) remain reserved filenames in `architecture/PAGE_ARCHITECTURE.md` for potential future milestones, out of scope for this v1.0.0 release.
