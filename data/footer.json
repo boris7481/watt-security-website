@@ -28,5 +28,5 @@
       { "label": "Politique de confidentialité", "href": "pages/privacy-policy.html" }
     ]
   },
-  "_legal_comment": "These pages don't exist yet (architecture/PAGE_ARCHITECTURE.md reserves their filenames for a future milestone) — the links intentionally point ahead to where they will live."
+  "_legal_comment": "Built in Milestone 21 (pages/legal-notice.html, pages/privacy-policy.html) — real, live pages, not placeholders."
 }

@@ -19,8 +19,8 @@ WEBSITE_WATT_SECURITY/
 │
 ├── assets/
 │   ├── css/
-│   │   ├── tokens.css              # CSS custom properties: colors, spacing, typography scale, radii, shadows
-│   │   ├── base.css                # Reset/normalize + base element styles (body, headings, links, lists)
+│   │   ├── variables.css              # CSS custom properties: colors, spacing, typography scale, radii, shadows
+│   │   ├── reset.css                # Reset/normalize + base element styles (body, headings, links, lists)
 │   │   ├── layout.css              # Header, footer, grid/container, section rhythm
 │   │   ├── components.css          # All reusable component styles (buttons, cards, forms, badges, alerts, accordion, nav, etc.)
 │   │   ├── utilities.css           # Small helper classes (visually-hidden, text-center, spacing overrides — used sparingly)
@@ -34,14 +34,21 @@ WEBSITE_WATT_SECURITY/
 │   ├── js/
 │   │   ├── main.js                 # Entry point (type="module"), imports/initializes the modules below per page
 │   │   └── modules/
-│   │       ├── mobile-menu.js      # Mobile navigation open/close
-│   │       ├── accordion.js        # Generic accordion logic (powers FAQ, reusable elsewhere)
-│   │       ├── gallery.js          # Gallery grid + lightbox behavior
-│   │       ├── counters.js         # Animated number count-up (Key Numbers section)
-│   │       ├── scroll-reveal.js    # Fade/slide-in on scroll (IntersectionObserver-based)
-│   │       ├── contact-form.js     # Form validation + submission handling
-│   │       ├── testimonials.js     # Testimonial grid/carousel behavior (if carousel is confirmed — see specifications/HOME_PAGE_SPECIFICATION.md open question)
-│   │       └── lazy-load.js        # Progressive/lazy loading helpers for below-fold images & videos (only where native `loading="lazy"` is insufficient)
+│   │       ├── mobile-menu.js      # Mobile navigation open/close [implemented]
+│   │       ├── hero-parallax.js    # Subtle scroll-linked Hero background translate [implemented]
+│   │       ├── hero-video.js       # Progressively upgrades the Hero poster to video once footage exists [implemented]
+│   │       ├── accordion.js        # Generic accordion logic (powers FAQ, reusable elsewhere) [implemented]
+│   │       ├── counters.js         # Animated number count-up (Key Numbers section) [implemented]
+│   │       ├── scroll-reveal.js    # Fade/slide-in on scroll (IntersectionObserver-based) [implemented]
+│   │       ├── testimonials.js     # Testimonial grid rendering [implemented]
+│   │       ├── contact-info.js     # Renders contact details from data/contact.json, reused by footer.js [implemented]
+│   │       ├── contact-map.js      # Google Maps embed for the Contact section [implemented]
+│   │       ├── contact-form.js     # Form validation + submission handling [implemented]
+│   │       ├── footer.js           # Site-wide footer rendering [implemented]
+│   │       ├── legal-page.js       # Shared NAP contact block for the legal pages [implemented]
+│   │       ├── page-paths.js       # Path-resolution helper so data-driven modules work from pages/*.html too [implemented]
+│   │       ├── gallery.js          # Gallery grid + lightbox behavior [not built — plain grid + native lightbox-free viewing was sufficient]
+│   │       └── lazy-load.js        # Progressive/lazy loading helpers (only where native `loading="lazy"` is insufficient) [not built — native lazy-loading was sufficient everywhere]
 │   │
 │   ├── images/                     # Organized by category, matching specifications/MEDIA_SPECIFICATION.md
 │   │   ├── agents/
@@ -107,8 +114,8 @@ See `PAGE_ARCHITECTURE.md` for full content detail per page. In summary:
 
 | File | Role |
 |---|---|
-| `tokens.css` | All CSS custom properties (`--color-*`, `--space-*`, `--font-*`, etc.) generated directly from `design/COLOR_PALETTE.md`, `design/TYPOGRAPHY.md`, and `design/SPACING.md`. The single source of truth every other CSS file reads from. |
-| `base.css` | Reset/normalize rules, base typography applied to raw elements (`body`, `h1`–`h6`, `p`, `a`, `ul`/`ol`), base focus-visible styling. |
+| `variables.css` | All CSS custom properties (`--color-*`, `--space-*`, `--font-*`, etc.) generated directly from `design/COLOR_PALETTE.md`, `design/TYPOGRAPHY.md`, and `design/SPACING.md`. The single source of truth every other CSS file reads from. |
+| `reset.css` | Reset/normalize rules, base typography applied to raw elements (`body`, `h1`–`h6`, `p`, `a`, `ul`/`ol`), base focus-visible styling. |
 | `layout.css` | Site-wide structural rules: header/nav bar, footer, page containers/max-width, the 12-column grid, section vertical rhythm (per `design/SPACING.md`). |
 | `components.css` | Every reusable component style, matching `COMPONENT_ARCHITECTURE.md` one-to-one: buttons, cards (service/team/testimonial), badges, alerts, forms, accordion, gallery items, counters, WhatsApp button. May be split into multiple files later if it grows too large — see `CSS_ARCHITECTURE.md`. |
 | `utilities.css` | A small, deliberately limited set of helper classes (e.g., `.visually-hidden`, `.text-center`) — not a full utility-class framework (per the "no framework" decision in `FRONTEND_ARCHITECTURE.md`). |

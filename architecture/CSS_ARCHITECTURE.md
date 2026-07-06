@@ -8,8 +8,8 @@ The project uses a **simplified, flat variant of ITCSS (Inverted Triangle CSS)**
 
 Layers, in load order (matches `PROJECT_STRUCTURE.md`):
 
-1. **`tokens.css`** — CSS custom properties only. No selectors targeting actual elements, just `:root { --variable: value; }` declarations.
-2. **`base.css`** — reset/normalize + bare element defaults (`body`, `h1`–`h6`, `p`, `a`, `ul`, `img`, `button`, `input`). No classes here — only element selectors, establishing sane defaults before any component-specific styling applies.
+1. **`variables.css`** — CSS custom properties only. No selectors targeting actual elements, just `:root { --variable: value; }` declarations.
+2. **`reset.css`** — reset/normalize + bare element defaults (`body`, `h1`–`h6`, `p`, `a`, `ul`, `img`, `button`, `input`). No classes here — only element selectors, establishing sane defaults before any component-specific styling applies.
 3. **`layout.css`** — macro structural rules: header, footer, page containers, the 12-column grid, section vertical rhythm. Governs *where things sit*, not what they look like in detail.
 4. **`components.css`** — every reusable component's visual styling (buttons, cards, forms, badges, alerts, accordion, gallery items, counters, nav, WhatsApp button), matching `COMPONENT_ARCHITECTURE.md` one-to-one. Governs *what things look like*.
 5. **`utilities.css`** — a small, intentionally limited set of single-purpose helper classes, loaded last so they can reliably override component defaults on the rare occasions that's needed (e.g., `.visually-hidden`, `.text-center`).
@@ -20,8 +20,8 @@ Layers, in load order (matches `PROJECT_STRUCTURE.md`):
 Each HTML page links stylesheets as separate `<link rel="stylesheet">` tags, in the exact order above — **not** via `@import` inside a single CSS file, since `@import` introduces sequential network round-trips that hurt First Contentful Paint (directly relevant to the Lighthouse Performance objective in `PERFORMANCE_STRATEGY.md`). Plain multiple `<link>` tags are fetched in parallel by the browser while still applying in the correct cascade order.
 
 Example load order for `index.html` (illustrative, no actual code written here):
-1. `tokens.css`
-2. `base.css`
+1. `variables.css`
+2. `reset.css`
 3. `layout.css`
 4. `components.css`
 5. `utilities.css`
@@ -29,7 +29,7 @@ Example load order for `index.html` (illustrative, no actual code written here):
 
 Inner pages follow the same order, substituting the relevant `pages/*.css` file (or omitting it entirely if no page-specific override exists yet).
 
-## 3. CSS Custom Properties (`tokens.css`)
+## 3. CSS Custom Properties (`variables.css`)
 
 All values from the design system are expressed as custom properties, generated directly from `design/COLOR_PALETTE.md`, `design/TYPOGRAPHY.md`, and `design/SPACING.md` — never hard-coded again in any other file. Categories:
 
@@ -43,7 +43,7 @@ All values from the design system are expressed as custom properties, generated 
 
 ## 4. Components
 
-- Each component in `components.css` is scoped under its BEM block name (`.service-card`, `.btn`, `.accordion`, etc., per `FILE_NAMING_CONVENTIONS.md`) and only ever references `tokens.css` custom properties for color/spacing/type/motion — no raw hex codes, raw px spacing values, or raw font names appear outside `tokens.css`.
+- Each component in `components.css` is scoped under its BEM block name (`.service-card`, `.btn`, `.accordion`, etc., per `FILE_NAMING_CONVENTIONS.md`) and only ever references `variables.css` custom properties for color/spacing/type/motion — no raw hex codes, raw px spacing values, or raw font names appear outside `variables.css`.
 - Component styles are written mobile-first: base rules target the smallest viewport, with `min-width` media queries progressively enhancing the layout for tablet/desktop/large-desktop, per the responsive-first principle in `PROJECT_RULES.md` and `design/SPACING.md`.
 - If `components.css` grows large enough to hinder navigation/maintainability, it may be split into multiple files (`components-cards.css`, `components-forms.css`, etc.) loaded in the same relative position in the load order — this is an implementation-time judgment call, not a decision to make now.
 

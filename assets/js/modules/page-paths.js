@@ -17,7 +17,7 @@
    update if the site's folder depth ever changes.
    ========================================================================== */
 
-export const IS_INNER_PAGE = /\/pages\//.test(window.location.pathname);
+const IS_INNER_PAGE = /\/pages\//.test(window.location.pathname);
 
 /** Adjusts a data/*.json path so it resolves correctly from any page depth. */
 export function resolveDataUrl(path) {

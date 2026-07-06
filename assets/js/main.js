@@ -42,6 +42,11 @@ async function init() {
   initMobileMenu();
   initHeroParallax();
 
+  if (document.querySelector(".hero__media-img")) {
+    const { initHeroVideo } = await import("./modules/hero-video.js");
+    await initHeroVideo();
+  }
+
   if (document.querySelector("[data-stats-grid]")) {
     const { initCounters } = await import("./modules/counters.js");
     await initCounters();

@@ -1,5 +1,7 @@
 # Watt Security — Corporate Website
 
+**Version: v1.0.0 — Production Ready**
+
 ## 1. Project Description
 
 Official corporate website for **Watt Security**, a private security company based in Douala, Cameroon. The site is designed to present the company's services professionally and generate qualified leads from corporate, industrial, residential, and event clients.
@@ -41,19 +43,30 @@ No build tools or frameworks are introduced unless explicitly required by a futu
 ```
 WEBSITE_WATT_SECURITY/
 │
+├── index.html                # Homepage
+├── pages/                    # Additional HTML pages
+│   ├── legal-notice.html         # Mentions légales
+│   └── privacy-policy.html       # Politique de confidentialité
+│
 ├── assets/
-│   ├── css/          # Stylesheets
-│   ├── js/            # JavaScript files
-│   ├── images/         # Image assets (photos, illustrations)
-│   ├── videos/         # Video assets
-│   ├── icons/           # Icon assets (SVG/PNG)
+│   ├── css/          # Stylesheets (variables, reset, layout, components, utilities)
+│   ├── js/            # JavaScript (main.js entry point + modules/)
+│   ├── images/         # Photos, organized by category
+│   ├── videos/         # Hero background video
+│   ├── icons/           # Favicon and inline-SVG-sourced icons
 │   ├── fonts/           # Self-hosted web fonts
+│   ├── logo/            # Official brand logo
 │   └── documents/       # Downloadable documents (PDFs, brochures)
 │
-├── pages/               # Additional HTML pages (beyond homepage)
-├── data/                # Structured content/data files (JSON, etc.)
+├── data/                # Structured content (JSON): contact, footer, stats, testimonials, FAQ
+├── design/              # Design system documentation
+├── specifications/      # Functional/UX/SEO/accessibility specifications
+├── architecture/        # Technical architecture documentation
+├── documentation/       # Supporting project documentation (e.g. media generation prompts)
 ├── .github/             # GitHub configuration (workflows, templates)
 │
+├── robots.txt
+├── sitemap.xml
 ├── README.md
 ├── PROJECT_RULES.md
 ├── CHANGELOG.md
@@ -86,7 +99,7 @@ See [PROJECT_RULES.md](PROJECT_RULES.md) for the full set of development rules, 
 
 ## 8. Installation Instructions
 
-This is currently a static project with no build step.
+This is a static project with no build step and no dependencies to install.
 
 1. Clone the repository:
    ```
@@ -94,25 +107,29 @@ This is currently a static project with no build step.
    cd WEBSITE_WATT_SECURITY
    ```
 2. Open the project folder in your code editor (e.g., VS Code).
-3. Once HTML pages exist, open them directly in a browser or serve them with a local static server (e.g., the VS Code "Live Server" extension) for the best experience (live reload, correct relative paths).
 
-No dependencies are required at this stage. This section will be updated if a build tool or package manager is introduced later.
+## 9. Running the Project Locally
 
-## 9. Future Roadmap
+Open `index.html` directly in a browser, or serve the project root with any static file server for the best experience (correct relative paths, live reload):
 
-- [ ] Milestone 1: Project initialization (this milestone)
-- [ ] Milestone 2: Base HTML structure (homepage skeleton)
-- [ ] Milestone 3: Global styling system (design tokens, typography, colors)
-- [ ] Milestone 4: Header & navigation
-- [ ] Milestone 5: Hero section
-- [ ] Milestone 6: Services section
-- [ ] Milestone 7: About / trust-building section
-- [ ] Milestone 8: Testimonials / clients section
-- [ ] Milestone 9: Contact section & form
-- [ ] Milestone 10: Footer
-- [ ] Milestone 11: Responsive refinement
-- [ ] Milestone 12: Performance & SEO optimization
-- [ ] Milestone 13: Accessibility audit
-- [ ] Milestone 14: Deployment
+```
+python -m http.server 5550
+```
+or the VS Code "Live Server" extension, then visit `http://localhost:5550/index.html`.
 
-This roadmap will evolve as the project progresses. Each milestone is implemented only when explicitly requested.
+No dependencies, package manager, or build step are required.
+
+## 10. Project Status — v1.0.0
+
+Development is complete. All planned homepage sections, the legal pages, SEO/structured data, accessibility pass, performance optimization, and final media integration have been delivered and audited (see `CHANGELOG.md` for the full v1.0.0 summary).
+
+**Delivered:**
+- Homepage (`index.html`): Header/Navigation, Hero (video + poster), Services, Why Choose Us, Key Numbers, K9 Unit, Photo Gallery, Testimonials, FAQ, Contact (form + Google Maps), Footer.
+- Legal pages (`pages/legal-notice.html`, `pages/privacy-policy.html`).
+- Complete SEO setup: meta tags, Open Graph, Twitter Card, `robots.txt`, `sitemap.xml`, JSON-LD (`LocalBusiness`).
+- Performance optimization: real WebP encoding, lazy loading, `fetchpriority`/`decoding` hints, parallel CSS delivery.
+- Accessibility: WCAG AA contrast, keyboard focus states, `prefers-reduced-motion` support.
+
+**Known open items before public launch** (see `CHANGELOG.md` v1.0.0 entry and the Milestone 29/30 audit reports for full detail): final production domain, favicon PNG/ICO variants, a dedicated Open Graph image, and a few client-confirmation items (legal representative name, hosting provider, business registration number) flagged as placeholders in `pages/legal-notice.html`.
+
+Pages not yet built (`about.html`, `services.html`, `gallery.html`, `contact.html`) remain reserved filenames in `architecture/PAGE_ARCHITECTURE.md` for potential future milestones, out of scope for this v1.0.0 release.

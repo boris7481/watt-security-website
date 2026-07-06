@@ -18,7 +18,7 @@ import { fetchContactData } from "./contact-info.js";
 const MAP_BASE_URL = "https://www.google.com/maps";
 
 /** Prefers precise GPS coordinates once set; falls back to the text address. */
-export function buildMapQuery(contact) {
+function buildMapQuery(contact) {
   const { gps, address } = contact;
   if (gps && typeof gps.lat === "number" && typeof gps.lng === "number") {
     return `${gps.lat},${gps.lng}`;
@@ -26,7 +26,7 @@ export function buildMapQuery(contact) {
   return `${address.street}, ${address.city}, ${address.country}`;
 }
 
-export function buildMapEmbedUrl(contact) {
+function buildMapEmbedUrl(contact) {
   const query = encodeURIComponent(buildMapQuery(contact));
   return `${MAP_BASE_URL}?q=${query}&output=embed`;
 }
