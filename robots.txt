@@ -3,4 +3,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.wattsecurity.com/sitemap.xml
+Sitemap: https://watt-security.com/sitemap.xml

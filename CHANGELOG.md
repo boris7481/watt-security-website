@@ -30,9 +30,10 @@ First production-ready release. Summarizes all work delivered across the project
 ### Added — SEO & Structured Data
 
 - Full `<head>` optimization: title, meta description, canonical, robots, theme-color.
-- Open Graph and Twitter Card tags on every page.
+- Open Graph and Twitter Card tags on every page, using a final dedicated social preview image (`assets/images/og/og-image.jpg`).
 - `robots.txt` and `sitemap.xml`.
 - `LocalBusiness` JSON-LD structured data.
+- Complete favicon set (SVG, ICO, 96×96 PNG, Apple Touch Icon) and a Web App Manifest (`assets/icons/site.webmanifest`), generated via RealFaviconGenerator from the official logo and wired into every page.
 
 ### Added — Media
 
@@ -53,9 +54,7 @@ First production-ready release. Summarizes all work delivered across the project
 
 ### Known Open Items (flagged for post-launch follow-up)
 
-- Production domain is still a placeholder (`https://www.wattsecurity.com`) pending final confirmation.
-- Favicon PNG/ICO variants and Apple Touch Icon not yet produced (SVG favicon only).
-- Dedicated 1200×630 Open Graph image not yet produced (temporarily reuses the logo).
+- Production domain is still a placeholder (`https://watt-security.com`) pending final confirmation.
 - Legal Notice placeholders pending client confirmation: legal representative name, hosting provider, business registration number.
 - Hero video accessibility: no visible pause control yet (WCAG 2.2.2); video currently plays on mobile rather than falling back to the poster only.
 

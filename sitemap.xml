@@ -2,7 +2,7 @@
 <!--
   Watt Security — sitemap.xml
 
-  Canonical domain is a placeholder (https://www.wattsecurity.com), pending
+  Canonical domain is a placeholder (https://watt-security.com), pending
   final domain confirmation (specifications/SEO_SPECIFICATION.md §8) — the
   same placeholder used in index.html's <link rel="canonical">/Open Graph
   tags and in robots.txt. Update every <loc> below the day the real domain
@@ -21,7 +21,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <url>
-    <loc>https://www.wattsecurity.com/</loc>
+    <loc>https://watt-security.com/</loc>
     <lastmod>2026-07-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
@@ -29,7 +29,7 @@
 
   <!-- PLACEHOLDER — pages/services.html does not exist yet -->
   <url>
-    <loc>https://www.wattsecurity.com/pages/services.html</loc>
+    <loc>https://watt-security.com/pages/services.html</loc>
     <lastmod>2026-07-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -37,7 +37,7 @@
 
   <!-- PLACEHOLDER — pages/gallery.html does not exist yet -->
   <url>
-    <loc>https://www.wattsecurity.com/pages/gallery.html</loc>
+    <loc>https://watt-security.com/pages/gallery.html</loc>
     <lastmod>2026-07-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -45,21 +45,21 @@
 
   <!-- PLACEHOLDER — pages/contact.html does not exist yet -->
   <url>
-    <loc>https://www.wattsecurity.com/pages/contact.html</loc>
+    <loc>https://watt-security.com/pages/contact.html</loc>
     <lastmod>2026-07-06</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://www.wattsecurity.com/pages/legal-notice.html</loc>
+    <loc>https://watt-security.com/pages/legal-notice.html</loc>
     <lastmod>2026-07-06</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
 
   <url>
-    <loc>https://www.wattsecurity.com/pages/privacy-policy.html</loc>
+    <loc>https://watt-security.com/pages/privacy-policy.html</loc>
     <lastmod>2026-07-06</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
